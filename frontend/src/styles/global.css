@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
+
+/* --- PALET WARNA BARU (TEMA AURORA BREW / PREMIUM DARK) --- */
+:root {
+  --kopi-pekat: #2A170F;    /* Background paling gelap */
+  --kopi-sedang: #4A2B1D;   /* Background seksi / gradasi */
+  --kopi-susu: #D5A677;     /* Warna emas/krem untuk tombol dan aksen */
+  --kertas-krem: #F2E3D0;   /* Background terang untuk seksi cerita */
+  --teks-terang: #F9F6F0;   /* Teks di atas background gelap */
+  --teks-gelap: #2A170F;    /* Teks di atas background terang */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--kopi-pekat);
+  color: var(--teks-terang);
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* --- NAVBAR SEMENTARA TEMA GELAP --- */
+.navbar {
+  background-color: transparent;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  padding: 20px 0;
+}
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+.logo-teks { color: var(--kopi-susu); font-size: 24px; font-weight: bold; text-decoration: none; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a { color: var(--teks-terang); text-decoration: none; font-size: 14px; }
+.btn-pesan { background: transparent; border: 1px solid var(--kopi-susu); color: var(--kopi-susu); padding: 8px 20px; text-decoration: none; border-radius: 4px; }
+
+/* --- GAYA LOGO NAVBAR --- */
+.logo-brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px;       /* Sesuaikan tinggi logo agar pas di Navbar */
+  width: auto;        /* Menjaga proporsi gambar */
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05); /* Efek membesar halus saat diarahkan kursor */
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  background: linear-gradient(rgba(42, 23, 15, 0.8), rgba(42, 23, 15, 0.6)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+}
+.hero h1 { font-size: 4rem; margin-bottom: 20px; color: var(--kertas-krem); line-height: 1.2; }
+.hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 500px; color: var(--kertas-krem); }
+.btn-primary { background-color: var(--kopi-sedang); border: 1px solid var(--kopi-susu); color: var(--kopi-susu); padding: 12px 30px; font-weight: 600; text-decoration: none; transition: 0.3s; }
+.btn-primary:hover { background-color: var(--kopi-susu); color: var(--kopi-pekat); }
+
+/* --- FEATURES BAR --- */
+.features-bar { background-color: var(--kopi-sedang); padding: 30px 0; border-bottom: 1px solid var(--kopi-susu); }
+.features-grid { display: flex; justify-content: space-around; text-align: center; color: var(--kopi-susu); }
+.feature-item span { font-size: 24px; display: block; margin-bottom: 10px; }
+
+/* --- GAYA BARU SECTION CERITA (KUTIPAN OWNER & FOTO KEMASAN) --- */
+.story-section { 
+  background-color: var(--kertas-krem); 
+  color: var(--teks-gelap); 
+  padding: 100px 0; 
+}
+
+.story-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Membagi dua kolom rata */
+  gap: 60px;
+  align-items: center;
+}
+
+.story-image-container {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.story-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.story-image:hover {
+  transform: scale(1.03); /* Sedikit membesar saat disorot */
+}
+
+.story-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: var(--kopi-pekat);
+}
+
+/* Desain khusus untuk kutipan (Quote) */
+.owner-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--kopi-sedang);
+  border-left: 4px solid var(--kopi-susu); /* Garis emas di kiri kutipan */
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.owner-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--kopi-pekat);
+  margin-bottom: 30px;
+}
+
+.story-description {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--teks-gelap);
+  line-height: 1.7;
+}
+
+/* Responsivitas untuk layar HP */
+@media (max-width: 768px) {
+  .story-wrapper {
+    grid-template-columns: 1fr; /* Berubah jadi atas-bawah di layar kecil */
+    gap: 40px;
+    text-align: center;
+  }
+  .owner-quote {
+    border-left: none;
+    border-bottom: 2px solid var(--kopi-susu);
+    padding-left: 0;
+    padding-bottom: 15px;
+  }
+}
+
+/* --- REGIONS SECTION (DENGAN BACKGROUND PETA NUSANTARA) --- */
+.regions-section { 
+  padding: 100px 0; 
+  text-align: center; 
+  /* Menggunakan efek gradasi gelap yang digabungkan dengan gambar peta/tekstur */
+  background: linear-gradient(rgba(42, 23, 15, 0.85), rgba(42, 23, 15, 0.95)), 
+              url('https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+  background-attachment: fixed; /* Memberikan efek parallax saat di-scroll */
+  position: relative;
+}
+
+.regions-section h2 { 
+  color: var(--kopi-susu); 
+  font-size: 2.5rem; 
+  margin-bottom: 20px; 
+  position: relative;
+  z-index: 2; /* Memastikan teks berada di atas background */
+}
+
+.regions-section p {
+  color: var(--teks-terang);
+  max-width: 700px;
+  margin: 0 auto 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.regions-list { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 15px; 
+  max-width: 900px; 
+  margin: 0 auto; 
+  position: relative;
+  z-index: 2;
+}
+
+/* Tombol Daerah yang lebih menonjol di atas background */
+.region-badge-btn {
+  background: rgba(213, 166, 119, 0.1); /* Transparansi warna emas */
+  backdrop-filter: blur(5px); /* Efek kaca blur di belakang tombol */
+  border: 1px solid var(--kopi-susu);
+  padding: 12px 28px;
+  border-radius: 50px;
+  color: var(--kertas-krem);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.region-badge-btn:hover {
+  background-color: var(--kopi-susu);
+  color: var(--kopi-pekat);
+  transform: translateY(-5px); /* Melayang lebih tinggi saat disentuh kursor */
+  box-shadow: 0 8px 20px rgba(213, 166, 119, 0.4);
+}
+
+/* --- GAYA PROSES KAMI --- */
+.process-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.process-section h2 {
+  font-size: 2.5rem;
+  color: var(--kopi-susu);
+  margin-bottom: 10px;
+}
+
+.process-subtitle {
+  color: var(--teks-terang);
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.process-item {
+  padding: 30px;
+  border: 1px solid rgba(213, 166, 119, 0.2);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.process-item:hover {
+  transform: translateY(-10px);
+  border-color: var(--kopi-susu);
+}
+
+.process-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.process-item h3 {
+  color: var(--kertas-krem);
+  margin-bottom: 10px;
+}
+
+.process-item p {
+  color: var(--teks-terang);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
+/* --- GAYA PROSES KAMI (LAYOUT MAJALAH) --- */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.process-card {
+  background: var(--kopi-sedang);
+  border-radius: 4px; /* Sudut lebih tajam/profesional */
+  overflow: hidden;
+  text-align: left; /* Teks rata kiri lebih profesional */
+  transition: transform 0.4s ease;
+}
+
+.process-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-placeholder {
+  height: 200px;
+  background-color: var(--kopi-pekat); /* Tempat Anda menaruh foto produk/proses */
+  background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80'); /* Contoh foto */
+  background-size: cover;
+  background-position: center;
+}
+
+.card-content {
+  padding: 25px;
+}
+
+.card-content h3 {
+  color: var(--kopi-susu);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  color: var(--teks-terang);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+/* --- SEKSI NARASI PERBAIKAN --- */
+.story-section p.subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  max-width: 850px;
+  margin: 0 auto 25px; /* Memberikan jarak antar paragraf narasi */
+  text-align: justify;
+}
+
+/* --- TOMBOL BADGE DAERAH INTERAKTIF --- */
+.region-badge-btn {
+  background: transparent;
+  border: 1px solid var(--kopi-susu);
+  padding: 12px 24px;
+  border-radius: 50px;
+  color: var(--kertas-krem);
+  font-size: 0.95rem;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.region-badge-btn:hover {
+  background-color: var(--kopi-susu);
+  color: var(--kopi-pekat);
+  transform: translateY(-3px); /* Efek melayang sedikit ke atas saat di-hover */
+  box-shadow: 0 5px 15px rgba(213, 166, 119, 0.3);
+}
+
+/* Responsivitas untuk Layar HP (Agar teks & foto visi misi menumpuk vertikal) */
+@media (max-width: 768px) {
+  .vision-mission {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .vm-image-container {
+    height: 300px;
+  }
+}
+
+/* --- GAYA KONTAK OWNER (INSTAGRAM, EMAIL, TELEPON) --- */
+.owner-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(42, 23, 15, 0.1); /* Garis pemisah halus */
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kopi-sedang);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--kopi-susu); /* Berubah jadi warna emas saat di-hover */
+  transform: translateY(-2px); /* Melayang sedikit ke atas */
+}
+
+.contact-link svg {
+  transition: stroke 0.3s ease;
+}
+
+.contact-link:hover svg {
+  stroke: var(--kopi-susu);
+}
