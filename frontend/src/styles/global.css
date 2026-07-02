@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 /* --- PALET WARNA BARU (TEMA AURORA BREW / PREMIUM DARK) --- */
 :root {
@@ -149,6 +151,137 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
     padding-left: 0;
     padding-bottom: 15px;
   }
+}
+
+/* --- GAYA SLIDER PRODUK CENTER MODE & BLUR (TEMA GELAP MENYATU) --- */
+.product-slider-section {
+  background-color: var(--kopi-pekat); /* Menggunakan warna dasar website agar menyatu */
+  padding: 100px 0 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Titik Navigasi di ATAS */
+.product-slider-section .slick-dots {
+  top: -40px;
+  bottom: auto;
+}
+.product-slider-section .slick-dots li button:before {
+  color: var(--teks-terang); 
+  font-size: 14px;
+}
+.product-slider-section .slick-dots li.slick-active button:before {
+  color: var(--kopi-susu); 
+}
+
+/* PANAH KIRI & KANAN */
+.slick-prev, .slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 10; /* Memastikan panah bisa diklik */
+}
+.slick-prev { left: 15px; }
+.slick-next { right: 15px; }
+
+.slick-prev:before, .slick-next:before {
+  color: var(--kopi-susu) !important; /* Panah warna emas */
+  font-size: 35px; /* Ukuran panah diperbesar */
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.slick-prev:hover:before, .slick-next:hover:before {
+  opacity: 1;
+}
+
+/* Transisi Halus Bawaan Slider */
+.slick-slide {
+  transition: all 0.5s ease-in-out;
+  padding: 30px 0;
+}
+
+/* KARTU DI SAMPING (KIRI & KANAN) */
+.slick-slide .showcase-card {
+  transform: scale(0.7); 
+  opacity: 0.4;          
+  filter: blur(5px);     
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;       /* Mengubah kursor jadi tangan agar pengunjung tau ini bisa diklik */
+}
+
+/* KARTU DI TENGAH (FOKUS) */
+.slick-center .showcase-card {
+  transform: scale(1.1); 
+  opacity: 1;            
+  filter: blur(0px);     
+  cursor: default;
+}
+
+/* Area Gambar */
+.showcase-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 380px; 
+  margin-bottom: 25px;
+}
+
+.showcase-img {
+  max-height: 100%;
+  width: auto;
+  filter: drop-shadow(0px 25px 15px rgba(0,0,0,0.6)); /* Bayangan lebih pekat untuk tema gelap */
+}
+
+/* Teks dan Tombol (Disesuaikan untuk Background Gelap) */
+.showcase-info {
+  text-align: center;
+  opacity: 0; 
+  transition: opacity 0.5s ease;
+}
+
+.slick-center .showcase-info {
+  opacity: 1; 
+}
+
+.showcase-info h4 {
+  font-family: 'Playfair Display', serif; 
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: var(--kertas-krem); /* Teks Judul Menjadi Terang/Krem */
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.showcase-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.showcase-action .price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--kopi-susu); /* Harga warna Emas */
+}
+
+.btn-comprar {
+  background: transparent;
+  border: 1.5px solid var(--kopi-susu); /* Garis emas */
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--kopi-susu); /* Teks emas */
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-comprar:hover {
+  background: var(--kopi-susu);
+  color: var(--kopi-pekat); /* Saat dihover warna teks jadi gelap */
 }
 
 /* --- REGIONS SECTION (DENGAN BACKGROUND PETA NUSANTARA) --- */
@@ -385,4 +518,711 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 
 .contact-link:hover svg {
   stroke: var(--kopi-susu);
+}
+
+
+/* ==========================================================================
+   KOPI TARA - HERO & ABOUT SECTION (SPESIFIK & AMAN DARI CONFLICT)
+   ========================================================================== */
+
+/* Wrapper Utama Halaman About */
+.kopi-tara-page-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
+
+/* ================= HERO SECTION (UPGRADED) ================= */
+.kopi-tara-hero {
+  position: relative;
+  /* Mengubah cokelat polos menjadi gradient mewah (Gelap ke Sedikit Terang di Tengah) */
+  background: #2A170F; /* Warna cokelat pekat */
+  min-height: 550px; /* Sedikit dinaikkan tingginya agar space teks lebih lega */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 80px; /* Memberikan ruang ekstra di bawah navbar */
+  text-align: center;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Judul Utama */
+.kopi-tara-hero-title {
+  font-size: 46px; /* Ukuran font dinaikkan sedikit agar lebih tegas */
+  color: #ffffff;
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3); /* Shadow halus agar tulisan lebih menonjol */
+}
+
+/* Tagline di Bawah Judul */
+.kopi-tara-hero-tagline {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #d1c4b9;
+  letter-spacing: 0.5px;
+  max-width: 650px;
+  line-height: 1.6;
+  margin-bottom: 35px;
+  padding: 0 20px;
+}
+
+/* Container Cangkir Kopi Mengambang (DIPERBESAR & DIPASING ULANG) */
+.kopi-tara-cup-container {
+  position: absolute;
+  bottom: -140px; /* Diturunkan lebih pas memotong batas area cokelat */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+  max-width: 500px; /* Batas maksimal container diperbesar dari 400px ke 500px */
+  display: flex;
+  justify-content: center;
+}
+
+/* Gambar Cangkir */
+.kopi-tara-cup-img {
+  width: 100%;
+  height: auto;
+  max-width: 440px; /* Ukuran maksimal cangkir dinaikkan dari 340px ke 440px agar terlihat besar dan dominan */
+  filter: drop-shadow(0px 25px 35px rgba(0, 0, 0, 0.35)); /* Efek shadow dipertegas agar bayangan di area putih lebih estetik */
+  transition: transform 0.3s ease;
+}
+
+/* Efek interaktif ringan saat kursor diarahkan ke cangkir (opsional, bikin web terasa hidup) */
+.kopi-tara-cup-img:hover {
+  transform: scale(1.03); 
+}
+
+/* ==========================================================================
+   INTRO STORY SECTION (PENGANTAR ASAL-USUL TARA)
+   ========================================================================== */
+
+.kopi-tara-intro-story {
+  background-color: #fbf9f6;
+  /* Menggunakan pola tekstur kertas transparan yang berulang halus */
+  background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); 
+  padding: 180px 20px 40px 20px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+.kopi-tara-story-container {
+  max-width: 800px; /* Dibuat agak ramping ke tengah agar nyaman dibaca */
+  margin: 0 auto;
+}
+
+.kopi-tara-story-title {
+  font-size: 32px;
+  color: #3d2b1f; /* Warna cokelat tua khas Kopi Tara */
+  font-weight: normal;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Garis aksen kecil di bawah judul cerita */
+.kopi-tara-story-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: #7c5e3d;
+}
+
+.kopi-tara-story-text p {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5c4a3c; /* Cokelat medium agar senada */
+  margin-bottom: 20px;
+  text-align: center; /* Dibuat rata tengah agar estetik sebagai teks pengantar */
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+  .kopi-tara-intro-story {
+    padding: 120px 20px 30px 20px;
+  }
+  .kopi-tara-story-title {
+    font-size: 26px;
+  }
+}
+
+/* ==========================================================================
+   ABOUT SECTION - VISI & MISI (SUSUNAN BARU & RAPI)
+   ========================================================================== */
+
+.kopi-tara-about-section {
+  background-color: #ffffff;
+  padding: 40px 20px 80px 20px; /* ◄ Padding atas dipotong jadi 40px agar naik pas */
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #4a4a4a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kopi-tara-about-container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.kopi-tara-about-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+.kopi-tara-about-subtitle {
+  font-size: 24px;
+  color: #555555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.kopi-tara-about-title {
+  font-size: 42px;
+  color: #444444;
+  font-weight: normal;
+  margin: 0 0 30px 0;
+}
+
+/* --- Struktur Khusus Blok Visi & Misi --- */
+.visi-misi-block {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.visi-misi-block h3 {
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  color: #3d2b1f; /* Cokelat tua khas Kopi Tara */
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  border-left: 4px solid #7c5e3d; /* Garis vertikal estetik */
+  padding-left: 12px;
+}
+
+.visi-misi-block p {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666666;
+  margin: 0;
+  text-align: justify;
+}
+
+.visi-misi-block ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.visi-misi-block ul li {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666666;
+  margin-bottom: 10px;
+  text-align: justify;
+  list-style-type: square; /* Poin list berbentuk kotak kecil premium */
+}
+
+
+/* --- CSS Gambar Biji Kopi & Balon Tooltip (Kolom Kanan) --- */
+.kopi-tara-map-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kopi-tara-map-box {
+  position: relative;
+  display: inline-block;
+}
+
+.kopi-tara-map-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+  border-radius: 4px; /* Sudut gambar melengkung halus */
+}
+
+.kopi-tara-map-tooltip {
+  position: absolute;
+  top: -40px; 
+  left: 45%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kopi-tara-tooltip-content {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 10px 20px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  min-width: 150px;
+}
+
+.kopi-tara-tooltip-title {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #444444;
+  display: block;
+  border-bottom: 1px dashed #cccccc;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.kopi-tara-tooltip-stars {
+  font-size: 10px;
+  color: #7c5e3d;
+  letter-spacing: 2px;
+}
+
+.kopi-tara-tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #ffffff;
+  margin-top: -1px;
+  filter: drop-shadow(0px 2px 1px rgba(0,0,0,0.05));
+  z-index: 2;
+}
+
+.kopi-tara-map-pin {
+  width: 6px;
+  height: 6px;
+  background-color: #7c5e3d;
+  border-radius: 50%;
+  margin-top: 5px;
+  box-shadow: 0 0 0 4px rgba(124, 94, 61, 0.3);
+}
+
+
+/* ==========================================================================
+   MEDIA QUERY RESPONSIVE (DIPERBAIKI UNTUK VISI MISI DI HP)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .kopi-tara-hero {
+    min-height: 420px;
+    padding: 30px 15px 0 15px;
+  }
+  .kopi-tara-hero-title {
+    font-size: 24px;
+  }
+  .kopi-tara-cup-container {
+    bottom: -70px;
+    max-width: 240px;
+  }
+  
+  .kopi-tara-about-section {
+    padding: 30px 20px 60px 20px;
+  }
+  .kopi-tara-about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .kopi-tara-about-title {
+    font-size: 32px;
+  }
+
+  /* Sentralisasi Visi Misi saat Layar HP */
+  .visi-misi-block {
+    text-align: center;
+  }
+  .visi-misi-block h3 {
+    border-left: none;
+    padding-left: 0;
+    border-bottom: 2px solid #7c5e3d;
+    display: inline-block;
+    padding-bottom: 3px;
+  }
+  .visi-misi-block p {
+    text-align: center;
+  }
+  .visi-misi-block ul {
+    padding-left: 15px;
+    display: inline-block;
+    text-align: left;
+  }
+  .visi-misi-block ul li {
+    text-align: left;
+  }
+  
+  .kopi-tara-map-tooltip {
+    left: 50%;
+  }
+}
+
+/* ==========================================================================
+   NUSANTARA MAP SECTION (DIKALIBRASI UNTUK PETA EMAS TARA)
+   ========================================================================== */
+
+/* --- Bagian Header Peta yang Diubah Warna Teksnya Menjadi Cokelat --- */
+.kopi-tara-map-subtitle {
+  font-size: 18px;
+  color: #7c5e3d; /* Warna cokelat aksen (soft brown) */
+  display: block;
+  letter-spacing: 1px;
+}
+
+.kopi-tara-map-title {
+  font-size: 36px;
+  color: #3d2b1f; /* Warna cokelat tua khas kopi pilihanmu */
+  margin: 5px 0 15px 0;
+}
+
+.kopi-tara-map-desc {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #5c4a3c; /* Mengubah teks deskripsi menjadi cokelat medium agar serasi */
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+
+.kopi-tara-nusantara-section {
+  background-color: #fbf9f6;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+.kopi-tara-nusantara-map-container {
+  max-width: 950px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.kopi-tara-nusantara-map-wrapper {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.kopi-tara-indonesia-map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Penanda Titik Lokasi */
+.kopi-pin-lokasi {
+  position: absolute;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.kopi-pulse-pin {
+  width: 10px;
+  height: 10px;
+  background-color: #3d2b1f; /* Titik cokelat tua agar kontras di atas peta emas */
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px rgba(61, 43, 31, 0.2);
+}
+
+/* Kotak Mini Kemasan Kopi */
+.kopi-kemasan-tooltip {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e2d9cf;
+}
+
+.kopi-kemasan-mini-img {
+  width: 32px;
+  height: auto;
+  margin-bottom: 3px;
+}
+
+.kopi-nama-daerah {
+  font-family: 'Arial', sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: #3d2b1f;
+  white-space: nowrap;
+}
+
+.kopi-pin-lokasi:hover .kopi-kemasan-tooltip {
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 8px 22px rgba(61, 43, 31, 0.15);
+}
+
+/* ==========================================================================
+   KOORDINAT AKURAT UNTUK GAMBAR DOWNLOAD (5).JFIF
+   ========================================================================== */
+.pin-gayo {
+  top: 14%;   /* Menunjuk ke Aceh di ujung kiri atas */
+  left: 5.5%;
+}
+
+.pin-toraja {
+  top: 48%;   /* Menunjuk ke bagian tengah Sulawesi */
+  left: 56.5%;
+}
+
+.pin-kintamani {
+  top: 83%;   /* Menunjuk ke pulau Bali di bawah */
+  left: 53.8%;
+}
+
+/* Responsif Layar Kecil (HP) */
+@media (max-width: 768px) {
+  .kopi-kemasan-tooltip {
+    transform: translateX(-50%) scale(0.75);
+    bottom: 15px;
+  }
+  .kopi-pin-lokasi:hover .kopi-kemasan-tooltip {
+    transform: translateX(-50%) scale(0.75);
+  }
+}
+
+/* ==========================================================================
+   REVISI: ANIMASI UAP KOPI ORGANIK & SUPER LEMBUT
+   ========================================================================== */
+
+.kopi-tara-cangkir-container {
+  position: relative;
+  display: inline-block;
+}
+
+.kopi-uap-wrapper {
+  position: absolute;
+  top: -5px; /* Menggantung pas di atas permukaan kopi hitam */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  z-index: 10;
+  padding: 0 10px;
+  /* ─── KUNCI RAHASIA: Memanggil filter liukan alami SVG ─── */
+  filter: url(#kopi-uap-alami) blur(6px); 
+}
+
+.kopi-uap-wrapper span {
+  position: relative;
+  bottom: 0;
+  display: block;
+  width: 12px; /* Dibuat agak lebar agar uapnya menggumpal cantik */
+  height: 60px;
+  /* Warna uap dibuat super tipis berkabut (putih transparan) */
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+  margin: 0 4px;
+  border-radius: 40%;
+  animation: uapMeliukAlami 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.8s);
+}
+
+/* Variasi acak tiap untaian uap agar tidak seragam */
+.kopi-uap-wrapper span:nth-child(2) {
+  width: 16px;
+  height: 80px;
+  animation-duration: 3.2s;
+}
+
+.kopi-uap-wrapper span:nth-child(3) {
+  width: 10px;
+  height: 50px;
+  animation-duration: 4.8s;
+}
+
+/* LOGIKA GERAKAN NYATA UAP HANGAT */
+@keyframes uapMeliukAlami {
+  0% {
+    transform: translateY(15px) scaleX(0.6) scaleY(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45; /* Perlahan muncul tipis */
+  }
+  60% {
+    /* Bergerak naik sambil melebar ke samping kiri-kanan secara organik */
+    transform: translateY(-40px) scaleX(1.4) scaleY(1.2) translateX(10px);
+    opacity: 0.3;
+  }
+  80% {
+    transform: translateY(-80px) scaleX(1.8) scaleY(1.4) translateX(-15px);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-110px) scaleX(2.2) scaleY(1.6);
+    opacity: 0; /* Menguap hilang di udara */
+  }
+}
+
+/* ==========================================================================
+   CSS HALAMAN KATALOG PRODUK (Kopi Tara)
+   ========================================================================== */
+
+.catalog-page {
+  background-color: #0c0804; /* Cokelat sangat pekat */
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+/* 1. Header Katalog */
+.catalog-header {
+  padding: 140px 20px 60px;
+  text-align: center;
+}
+
+.catalog-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #faf8f5;
+  margin-bottom: 15px;
+}
+
+.catalog-header p {
+  color: #d1cdc4;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* 2. Menu Filter Daerah */
+.catalog-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 50px;
+  padding: 20px 0;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid #d5a677; /* Warna emas */
+  color: #d5a677;
+  padding: 10px 25px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: #d5a677;
+  color: #0c0804;
+  font-weight: 600;
+}
+
+/* 3. Grid Produk (Sangat Rapi) */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Kartu Produk */
+.catalog-card {
+  background-color: #16100c;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(213, 166, 119, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.catalog-img-wrapper {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.catalog-product-img {
+  max-height: 100%;
+  max-width: 100%;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+}
+
+.catalog-region-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #d5a677;
+  color: #0c0804;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.catalog-info {
+  padding: 0 20px 25px;
+  text-align: center;
+}
+
+.catalog-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #faf8f5;
+  margin-bottom: 10px;
+}
+
+.catalog-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #d5a677;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.btn-beli-katalog {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #faf8f5;
+  color: #faf8f5;
+  padding: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-beli-katalog:hover {
+  background: #faf8f5;
+  color: #0c0804;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+  .catalog-grid { grid-template-columns: 1fr; }
 }

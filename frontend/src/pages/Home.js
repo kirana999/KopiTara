@@ -1,14 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Slider from "react-slick"; // Import Slider untuk produk
 import Navbar from '../components/Navbar';
 import '../styles/global.css';
 
 const Home = () => {
-  // Fungsi pembantu untuk mengarahkan ke katalog sambil membawa filter nama daerah
+  // Fungsi mengarahkan ke katalog sambil membawa filter nama daerah
   const handleRegionClick = (regionName) => {
-    // Pengunjung akan diarahkan ke halaman katalog dengan parameter query daerah
     window.location.href = `/katalog?daerah=${encodeURIComponent(regionName)}`;
   };
 
+// Konfigurasi BARU untuk Slider (Klik Produk Samping & Tombol Panah Aktif)
+  const sliderSettings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "0px",
+    slidesToShow: 3,
+    speed: 500,
+    dots: true,
+    arrows: true,         // 1. Mengaktifkan panah di kanan & kiri layar
+    focusOnSelect: true,  // 2. KUNCI: Membuat produk samping bisa diklik untuk digeser
+    responsive: [
+      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: true, arrows: false } }
+    ]
+  };
+  
   return (
     <div className="home-page">
       <Navbar />
@@ -18,35 +35,32 @@ const Home = () => {
         <div className="container">
           <h1>Setiap cangkir,<br/>diracik menuju kesempurnaan.</h1>
           <p>Temukan kenikmatan kopi premium nusantara dari petani lokal dalam nuansa yang hangat dan autentik.</p>
-          {/* Mengubah tautan langsung ke halaman Katalog */}
-          <a href="/katalog" className="btn-primary">Lihat Katalog Produk</a>
+          <Link to="/katalog" className="btn-primary">Lihat Katalog Produk</Link>
         </div>
       </section>
 
-      {/* 2. PROSES KAMI SECTION */}
+      {/* 2. PROSES KAMI SECTION (Desain Kartu Elegan) */}
       <section className="process-section container">
         <h2>Kenali Proses Kami</h2>
         <p className="process-subtitle">Dedikasi kami tertuang dalam setiap langkah perjalanan kopi dari kebun hingga ke tangan Anda.</p>
         
         <div className="process-grid">
           <div className="process-card">
-            <div className="card-img-placeholder"></div> {/* Nanti diisi foto/gambar */}
+            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80')"}}></div>
             <div className="card-content">
               <h3>Seleksi Petani</h3>
               <p>Kami bermitra langsung dengan petani lokal untuk memastikan biji kopi pilihan terbaik.</p>
             </div>
           </div>
-
           <div className="process-card">
-            <div className="card-img-placeholder"></div>
+            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&w=400&q=80')"}}></div>
             <div className="card-content">
               <h3>Sangrai Sempurna</h3>
               <p>Teknik *roasting* presisi untuk menonjolkan karakter unik setiap biji kopi.</p>
             </div>
           </div>
-
           <div className="process-card">
-            <div className="card-img-placeholder"></div>
+            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=400&q=80')"}}></div>
             <div className="card-content">
               <h3>Giling Segar</h3>
               <p>Kopi digiling tepat saat pesanan tiba, menjaga kesegaran dan aroma asli.</p>
@@ -55,24 +69,19 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. NARRATIVE STORY SECTION (Kutipan Owner & Foto Kemasan) */}
+      {/* 3. NARRATIVE STORY SECTION (Kutipan Owner + Kontak) */}
       <section className="story-section">
         <div className="container story-wrapper">
-          
-          {/* Tempat Foto Kemasan */}
           <div className="story-image-container">
             <img 
-              // Ganti URL ini nanti dengan foto kemasan asli (misal: src="/images/kemasan-kopi.jpg")
               src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
-              alt="Kemasan Kopi Tara" 
+              alt="Sejarah Kopi Tara" 
               className="story-image"
             />
           </div>
 
-          {/* Konten Kutipan Owner */}
           <div className="story-content">
             <h2>Mengapa Kopi Tara Tercipta?</h2>
-            
             <blockquote className="owner-quote">
               "Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh."
             </blockquote>
@@ -82,9 +91,8 @@ const Home = () => {
               Kami memproses biji kopi murni pilihan secara tradisional dan memastikan kesegarannya dengan konsep <strong>"digiling langsung di tempat saat Anda memesan"</strong>. Setiap cangkir yang Anda nikmati merupakan bentuk dukungan nyata terhadap masa depan mahasiswa lokal yang kami berdayakan.
             </p>
 
-            {/* Tautan Kontak & Sosial Media */}
             <div className="owner-contacts">
-              <a href="https://instagram.com/kopitaraberkah" target="_blank" rel="noopener noreferrer" className="contact-link">
+              <a href="https://instagram.com/kopitara" target="_blank" rel="noopener noreferrer" className="contact-link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 Instagram
               </a>
@@ -98,21 +106,45 @@ const Home = () => {
               </a>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* 4. REGIONS SECTION (Fitur klik interaktif diarahkan ke katalog berdasarkan daerah) */}
+{/* 4. PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
+      <section className="product-slider-section">
+        <div className="container">
+          <Slider {...sliderSettings}>
+            
+            {/* Tukar sumber gambar ke folder tempatan anda */}
+            {[
+              { nama: "KOPI TEMANGGUNG", img: "/images/kopi-1.png" },
+              { nama: "KOPI MALABAR", img: "/images/kopi-2.png" },
+              { nama: "KOPI ACEH GAYO", img: "/images/kopi-3.png" },
+              { nama: "KOPI TORAJA", img: "/images/kopi-4.png" },
+              { nama: "KOPI KINTAMANI", img: "/images/kopi-5.png" }
+              // Anda boleh tambah lagi produk di sini mengikut turutan gambar anda
+            ].map((produk, index) => (
+              <div className="showcase-card" key={index}>
+                <div className="showcase-img-container">
+                  <img src={produk.img} alt={produk.nama} className="showcase-img" />
+                </div>
+                <div className="showcase-info">
+                  <h4>{produk.nama}</h4>
+                </div>
+              </div>
+            ))}
+
+          </Slider>
+        </div>
+      </section>
+
+      {/* 5. REGIONS SECTION (Peta Nusantara) */}
       <section className="regions-section">
         <div className="container">
           <h2>Kekayaan Kopi Nusantara</h2>
           <p>Kopi ibarat buah, membawa cita rasa unik dari tanah kelahirannya. Klik salah satu daerah di bawah untuk melihat koleksi produk spesifik dari wilayah tersebut:</p>
           
           <div className="regions-list">
-            {[
-              'Temanggung', 'Garut', 'Cianjur', 'Solo', 'Karawang', 
-              'Malabar', 'Bali', 'Lampung', 'Aceh', 'Medan'
-            ].map((daerah) => (
+            {['Temanggung', 'Garut', 'Cianjur', 'Solo', 'Karawang', 'Malabar', 'Bali', 'Lampung', 'Aceh', 'Medan'].map((daerah) => (
               <button 
                 key={daerah} 
                 className="region-badge-btn"
