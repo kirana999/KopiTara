@@ -41,3 +41,4 @@ Coffetara.id/
 ## 🤝 Kontribusi
 
 Proyek ini dikembangkan khusus untuk kebutuhan internal Kopi Tara. Pengembangan fitur selanjutnya akan difokuskan pada halaman Katalog Produk dan dashboard ulasan pelanggan.
+projeckt zuto
