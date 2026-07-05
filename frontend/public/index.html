@@ -3,13 +3,38 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <title>Coffetara.id - Kopi Nusantara</title>
-  <meta name="description" content="Katalog kopi premium nusantara dari Kopi Tara." />
+  <meta name="theme-color" content="#0d0704" />
+
+  <!-- SEO -->
+  <title>Kapal Otok-Otok — Kopi Robusta Kerinci Premium | KopiTara</title>
+  <meta name="description" content="Kapal Otok-Otok, kopi Robusta Kerinci 100% pilihan. Digiling segar dari biji kopi dataran tinggi Kerinci. Pesan sekarang di KopiTara." />
+  <meta property="og:title"       content="Kapal Otok-Otok — Kopi Robusta Kerinci Premium" />
+  <meta property="og:description" content="Digiling dari biji kopi pilihan dengan cita rasa khas dataran tinggi Kerinci." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Premium typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Critical inline styles to prevent FOUC */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0d0704;
+      color: #f5e6d3;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+    /* Prevent layout shift while React hydrates */
+    #root { min-height: 100vh; }
+  </style>
 </head>
 <body>
   <noscript>Anda harus mengaktifkan JavaScript untuk menjalankan website ini.</noscript>
-
   <div id="root"></div>
 </body>
 </html>

@@ -25,20 +25,80 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* --- NAVBAR SEMENTARA TEMA GELAP --- */
+/* --- NAVBAR — Floating over cinematic hero --- */
 .navbar {
-  background-color: transparent;
-  position: absolute;
+  background: transparent;
+  position: fixed;
   width: 100%;
   top: 0;
-  z-index: 10;
-  padding: 20px 0;
+  z-index: 100;
+  padding: 24px 0;
+  transition: background 0.5s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
 }
+
+/* Scrolled state — added via JS scroll listener in Navbar */
+.navbar.scrolled {
+  background: rgba(13, 7, 4, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(213, 166, 119, 0.12);
+}
+
 .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
 .logo-teks { color: var(--kopi-susu); font-size: 24px; font-weight: bold; text-decoration: none; }
-.nav-links { display: flex; gap: 30px; list-style: none; }
-.nav-links a { color: var(--teks-terang); text-decoration: none; font-size: 14px; }
-.btn-pesan { background: transparent; border: 1px solid var(--kopi-susu); color: var(--kopi-susu); padding: 8px 20px; text-decoration: none; border-radius: 4px; }
+
+/* ── Logo Image (AI-generated brand mark) ── */
+.logo-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 40px;          /* Diperkecil agar lebih proporsional */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.12));
+  transition: filter 0.3s ease;
+}
+
+.logo-brand:hover .logo-img {
+  filter: drop-shadow(0 0 16px rgba(213, 166, 119, 0.35));
+}
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: rgba(245, 230, 211, 0.85);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: var(--kopi-susu); }
+.btn-pesan {
+  background: transparent;
+  border: 1px solid rgba(213, 166, 119, 0.6);
+  color: var(--kopi-susu);
+  padding: 8px 22px;
+  text-decoration: none;
+  border-radius: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.btn-pesan:hover {
+  background: rgba(213, 166, 119, 0.15);
+  border-color: var(--kopi-susu);
+}
 
 /* --- GAYA LOGO NAVBAR --- */
 .logo-brand {
@@ -56,16 +116,8 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   transform: scale(1.05); /* Efek membesar halus saat diarahkan kursor */
 }
 
-/* --- HERO SECTION --- */
-.hero {
-  background: linear-gradient(rgba(42, 23, 15, 0.8), rgba(42, 23, 15, 0.6)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  padding-top: 80px;
-}
-.hero h1 { font-size: 4rem; margin-bottom: 20px; color: var(--kertas-krem); line-height: 1.2; }
-.hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 500px; color: var(--kertas-krem); }
+/* --- HERO SECTION (legacy — replaced by CinematicHero) --- */
+.hero { display: none; }
 .btn-primary { background-color: var(--kopi-sedang); border: 1px solid var(--kopi-susu); color: var(--kopi-susu); padding: 12px 30px; font-weight: 600; text-decoration: none; transition: 0.3s; }
 .btn-primary:hover { background-color: var(--kopi-susu); color: var(--kopi-pekat); }
 
@@ -1225,4 +1277,196 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 /* Responsif Mobile */
 @media (max-width: 768px) {
   .catalog-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   PREMIUM FLOATING WHATSAPP CTA
+   260 × 74px pill — bottom: 24px right: 24px — z-index: 99999
+   ================================================================ */
+
+/* ── Entrance: fade-in + slide-up ── */
+@keyframes waEnter {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Idle: gentle breathing pulse every 4 s ── */
+@keyframes waBreathe {
+  0%,  100% { box-shadow: 0 8px 28px rgba(37,211,102,0.40), 0 4px 12px rgba(0,0,0,0.30); }
+  50%        { box-shadow: 0 12px 36px rgba(37,211,102,0.60), 0 4px 16px rgba(0,0,0,0.22); }
+}
+
+/* ── Main wrapper ── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px; /* Disesuaikan untuk menutupi watermark */
+  right: 15px;  /* Disesuaikan untuk menutupi watermark */
+  z-index: 99999;
+
+  /* Pill shape */
+  width: 260px;
+  height: 74px;
+  border-radius: 50px;
+
+  /* Premium green gradient */
+  background: linear-gradient(135deg, #2ecc71 0%, #25D366 45%, #1aab52 100%);
+
+  /* Baseline shadow */
+  box-shadow: 0 8px 28px rgba(37,211,102,0.40), 0 4px 12px rgba(0,0,0,0.30);
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 0;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  /* Entrance animation — runs once on load */
+  animation:
+    waEnter   0.6s cubic-bezier(0.22, 1, 0.36, 1) both,
+    waBreathe 4s  ease-in-out 0.8s infinite;
+
+  /* Smooth hover transition */
+  transition:
+    transform   0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow  0.35s ease;
+
+  /* Always above everything */
+  isolation: isolate;
+}
+
+/* ── Subtle shine overlay ── */
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    160deg,
+    rgba(255,255,255,0.18) 0%,
+    rgba(255,255,255,0.04) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Hover: enlarge + stronger shadow ── */
+.whatsapp-float:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 16px 48px rgba(37,211,102,0.55),
+    0 6px 20px rgba(0,0,0,0.35);
+  animation-play-state: paused; /* pause breathing on hover */
+}
+
+/* ── Active (click) feedback ── */
+.whatsapp-float:active {
+  transform: scale(0.98);
+}
+
+/* ── WhatsApp icon wrapper ── */
+.whatsapp-float__icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 74px;
+  height: 74px;
+}
+
+.whatsapp-float__icon svg {
+  width: 36px;
+  height: 36px;
+  fill: #ffffff;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.20));
+}
+
+/* ── Divider line between icon and text ── */
+.whatsapp-float__divider {
+  position: relative;
+  z-index: 2;
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+/* ── Text block ── */
+.whatsapp-float__text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: 0 20px 0 14px;
+  gap: 2px;
+}
+
+.wa-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.wa-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Arrow chevron on the right ── */
+.whatsapp-float__arrow {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  padding-right: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover .whatsapp-float__arrow {
+  transform: translateX(3px);
+}
+
+/* ── Mobile: slightly smaller ── */
+@media (max-width: 640px) {
+  .whatsapp-float {
+    width: 220px;
+    height: 62px;
+    bottom: 16px;
+    right: 16px;
+    border-radius: 40px;
+  }
+  .whatsapp-float__icon {
+    width: 62px;
+    height: 62px;
+  }
+  .whatsapp-float__icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  .wa-title   { font-size: 0.72rem; }
+  .wa-subtitle { font-size: 0.60rem; }
 }

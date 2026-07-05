@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Slider from "react-slick"; // Import Slider untuk produk
+import Slider from "react-slick";
 import Navbar from '../components/Navbar';
+import CinematicHero from '../components/CinematicHero';
 import '../styles/global.css';
 
+const WA_NUMBER = '628177455551'; // +62 817-745-551
+const WA_MESSAGE = encodeURIComponent('Halo Kopi Tara! Saya ingin memesan Kapal Otok-Otok Robusta Kerinci. 🚢☕');
+
 const Home = () => {
-  // Fungsi mengarahkan ke katalog sambil membawa filter nama daerah
   const handleRegionClick = (regionName) => {
     window.location.href = `/katalog?daerah=${encodeURIComponent(regionName)}`;
   };
 
-// Konfigurasi BARU untuk Slider (Klik Produk Samping & Tombol Panah Aktif)
   const sliderSettings = {
     className: "center",
     centerMode: true,
@@ -19,31 +21,60 @@ const Home = () => {
     slidesToShow: 3,
     speed: 500,
     dots: true,
-    arrows: true,         // 1. Mengaktifkan panah di kanan & kiri layar
-    focusOnSelect: true,  // 2. KUNCI: Membuat produk samping bisa diklik untuk digeser
+    arrows: true,
+    focusOnSelect: true,
     responsive: [
       { breakpoint: 768, settings: { slidesToShow: 1, centerMode: true, arrows: false } }
     ]
   };
-  
+
   return (
     <div className="home-page">
+      {/* Navbar floats above the cinematic hero */}
       <Navbar />
 
-      {/* 1. HERO SECTION */}
-      <section className="hero">
-        <div className="container">
-          <h1>Setiap cangkir,<br/>diracik menuju kesempurnaan.</h1>
-          <p>Temukan kenikmatan kopi premium nusantara dari petani lokal dalam nuansa yang hangat dan autentik.</p>
-          <Link to="/katalog" className="btn-primary">Lihat Katalog Produk</Link>
+      {/* ════════════════════════════════════════════════════════════════════
+          1. CINEMATIC HERO — Scroll-driven frame animation
+          ════════════════════════════════════════════════════════════════════ */}
+      <CinematicHero />
+
+      {/* ════════════════════════════════════════════════════════════════════
+          2. TENTANG PRODUK — Revealed after hero
+          ════════════════════════════════════════════════════════════════════ */}
+      <section className="about-produk-section" id="tentang-produk">
+        <span className="about-produk-eyebrow">Tentang Produk</span>
+        <h2 className="about-produk-title">Cita Rasa Dataran Tinggi</h2>
+        <p className="about-produk-body">
+          Kapal Otok-Otok hadir sebagai simbol perjalanan panjang biji kopi Kerinci—dari kebun di atas awan
+          hingga ke cangkir Anda. Setiap tegukan membawa aroma tanah vulkanik dan kesegaran udara pegunungan.
+        </p>
+
+        <div className="about-produk-grid">
+          <div className="ap-card">
+            <span className="ap-card-icon">🌿</span>
+            <h3 className="ap-card-title">100% Robusta Kerinci</h3>
+            <p className="ap-card-body">Dipetik tangan dari kebun organik di ketinggian 1.500–2.000 mdpl.</p>
+          </div>
+          <div className="ap-card">
+            <span className="ap-card-icon">⚙️</span>
+            <h3 className="ap-card-title">Giling Segar</h3>
+            <p className="ap-card-body">Digiling tepat saat pesanan masuk. Kesegaran aroma terjaga sempurna.</p>
+          </div>
+          <div className="ap-card">
+            <span className="ap-card-icon">🚢</span>
+            <h3 className="ap-card-title">Kapal Otok-Otok</h3>
+            <p className="ap-card-body">Kemasan ikonik terinspirasi kapal uap tradisional Nusantara.</p>
+          </div>
         </div>
       </section>
 
-      {/* 2. PROSES KAMI SECTION (Desain Kartu Elegan) */}
+      {/* ════════════════════════════════════════════════════════════════════
+          3. PROSES KAMI SECTION
+          ════════════════════════════════════════════════════════════════════ */}
       <section className="process-section container">
         <h2>Kenali Proses Kami</h2>
         <p className="process-subtitle">Dedikasi kami tertuang dalam setiap langkah perjalanan kopi dari kebun hingga ke tangan Anda.</p>
-        
+
         <div className="process-grid">
           <div className="process-card">
             <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80')"}}></div>
@@ -56,7 +87,7 @@ const Home = () => {
             <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&w=400&q=80')"}}></div>
             <div className="card-content">
               <h3>Sangrai Sempurna</h3>
-              <p>Teknik *roasting* presisi untuk menonjolkan karakter unik setiap biji kopi.</p>
+              <p>Teknik roasting presisi untuk menonjolkan karakter unik setiap biji kopi.</p>
             </div>
           </div>
           <div className="process-card">
@@ -69,13 +100,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. NARRATIVE STORY SECTION (Kutipan Owner + Kontak) */}
+      {/* ════════════════════════════════════════════════════════════════════
+          4. NARRATIVE STORY SECTION
+          ════════════════════════════════════════════════════════════════════ */}
       <section className="story-section">
         <div className="container story-wrapper">
           <div className="story-image-container">
-            <img 
-              src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
-              alt="Sejarah Kopi Tara" 
+            <img
+              src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Sejarah Kopi Tara"
               className="story-image"
             />
           </div>
@@ -86,7 +119,7 @@ const Home = () => {
               "Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh."
             </blockquote>
             <p className="owner-name">— Founder, Kopi Tara</p>
-            
+
             <p className="story-description">
               Kami memproses biji kopi murni pilihan secara tradisional dan memastikan kesegarannya dengan konsep <strong>"digiling langsung di tempat saat Anda memesan"</strong>. Setiap cangkir yang Anda nikmati merupakan bentuk dukungan nyata terhadap masa depan mahasiswa lokal yang kami berdayakan.
             </p>
@@ -109,19 +142,18 @@ const Home = () => {
         </div>
       </section>
 
-{/* 4. PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
+      {/* ════════════════════════════════════════════════════════════════════
+          5. PRODUCT SLIDER SECTION
+          ════════════════════════════════════════════════════════════════════ */}
       <section className="product-slider-section">
         <div className="container">
           <Slider {...sliderSettings}>
-            
-            {/* Tukar sumber gambar ke folder tempatan anda */}
             {[
               { nama: "KOPI TEMANGGUNG", img: "/images/kopi-1.png" },
-              { nama: "KOPI MALABAR", img: "/images/kopi-2.png" },
-              { nama: "KOPI ACEH GAYO", img: "/images/kopi-3.png" },
-              { nama: "KOPI TORAJA", img: "/images/kopi-4.png" },
-              { nama: "KOPI KINTAMANI", img: "/images/kopi-5.png" }
-              // Anda boleh tambah lagi produk di sini mengikut turutan gambar anda
+              { nama: "KOPI MALABAR",    img: "/images/kopi-2.png" },
+              { nama: "KOPI ACEH GAYO",  img: "/images/kopi-3.png" },
+              { nama: "KOPI TORAJA",     img: "/images/kopi-4.png" },
+              { nama: "KOPI KINTAMANI",  img: "/images/kopi-5.png" }
             ].map((produk, index) => (
               <div className="showcase-card" key={index}>
                 <div className="showcase-img-container">
@@ -132,21 +164,22 @@ const Home = () => {
                 </div>
               </div>
             ))}
-
           </Slider>
         </div>
       </section>
 
-      {/* 5. REGIONS SECTION (Peta Nusantara) */}
+      {/* ════════════════════════════════════════════════════════════════════
+          6. REGIONS SECTION
+          ════════════════════════════════════════════════════════════════════ */}
       <section className="regions-section">
         <div className="container">
           <h2>Kekayaan Kopi Nusantara</h2>
           <p>Kopi ibarat buah, membawa cita rasa unik dari tanah kelahirannya. Klik salah satu daerah di bawah untuk melihat koleksi produk spesifik dari wilayah tersebut:</p>
-          
+
           <div className="regions-list">
             {['Temanggung', 'Garut', 'Cianjur', 'Solo', 'Karawang', 'Malabar', 'Bali', 'Lampung', 'Aceh', 'Medan'].map((daerah) => (
-              <button 
-                key={daerah} 
+              <button
+                key={daerah}
                 className="region-badge-btn"
                 onClick={() => handleRegionClick(daerah)}
               >
@@ -157,7 +190,41 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ════════════════════════════════════════════════════════════════════
+          PREMIUM FLOATING WHATSAPP CTA
+          260 × 74 px pill — z-index: 99999 — always above everything
+          ════════════════════════════════════════════════════════════════════ */}
+      <a
+        href={`https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`}
+        className="whatsapp-float"
+        id="wa-float-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat WhatsApp Kopi Tara — +62 817-745-551"
+      >
+        {/* Left: WhatsApp icon */}
+        <span className="whatsapp-float__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.816.733 5.461 2.018 7.76L0 32l8.455-2.217A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.32 22.587c-.347.974-2.02 1.866-2.782 1.987-.713.114-1.616.162-2.606-.164-.601-.194-1.373-.453-2.355-.887-4.147-1.79-6.86-5.968-7.068-6.246-.208-.278-1.693-2.251-1.693-4.296 0-2.044 1.075-3.05 1.455-3.464.38-.415.83-.519 1.106-.519.278 0 .554.003.797.015.256.013.6-.097.938.716.347.834 1.177 2.878 1.28 3.087.104.208.173.451.035.728-.139.278-.208.451-.416.694-.208.243-.437.543-.624.73-.208.208-.425.433-.183.85.243.416 1.08 1.781 2.318 2.884 1.593 1.42 2.936 1.86 3.353 2.068.416.208.659.174.902-.104.243-.278 1.04-1.213 1.318-1.63.278-.416.554-.347.936-.208.381.139 2.43 1.144 2.846 1.352.416.208.694.313.797.486.104.174.104 1.005-.243 1.979z"/>
+          </svg>
+        </span>
+
+        {/* Divider */}
+        <span className="whatsapp-float__divider" aria-hidden="true" />
+
+        {/* Right: text */}
+        <span className="whatsapp-float__text">
+          <span className="wa-title">Chat WhatsApp</span>
+          <span className="wa-subtitle">Pesan Sekarang</span>
+        </span>
+
+        {/* Right: arrow indicator */}
+        <span className="whatsapp-float__arrow" aria-hidden="true">›</span>
+      </a>
+
     </div>
+
+
   );
 };
 
