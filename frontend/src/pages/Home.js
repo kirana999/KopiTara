@@ -96,33 +96,56 @@ const Home = () => {
   </div>
 </section>
 
-{/* 4. PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
-      <section className="product-slider-section">
-        <div className="container">
-          <Slider {...sliderSettings}>
-            
-            {/* Tukar sumber gambar ke folder tempatan anda */}
-            {[
-              { nama: "KOPI TEMANGGUNG", img: "/images/kopi-1.png" },
-              { nama: "KOPI MALABAR", img: "/images/kopi-2.png" },
-              { nama: "KOPI ACEH GAYO", img: "/images/kopi-3.png" },
-              { nama: "KOPI TORAJA", img: "/images/kopi-4.png" },
-              { nama: "KOPI KINTAMANI", img: "/images/kopi-5.png" }
-              // Anda boleh tambah lagi produk di sini mengikut turutan gambar anda
-            ].map((produk, index) => (
-              <div className="showcase-card" key={index}>
-                <div className="showcase-img-container">
-                  <img src={produk.img} alt={produk.nama} className="showcase-img" />
-                </div>
-                <div className="showcase-info">
-                  <h4>{produk.nama}</h4>
-                </div>
-              </div>
-            ))}
+{/* 4. BEST SELLER PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
+<section className="product-slider-section py-12 bg-cream-light">
+  <div className="container mx-auto px-4 text-center">
+    
+    {/* Judul Seksi */}
+    <div className="section-title mb-8">
+      <span className="text-amber-700 font-semibold tracking-wider uppercase text-sm block mb-2">Produk Terlaris</span>
+      <h2 className="text-3xl font-bold text-stone-800">Koleksi Kemasan Kopi Unggulan</h2>
+      <p className="text-stone-500 mt-2 text-sm max-w-md mx-auto">Varian kopi terbaik yang paling banyak diminati oleh para penikmat kopi nusantara.</p>
+    </div>
 
-          </Slider>
+    <Slider {...sliderSettings}>
+      
+      {[
+        { nama: "KOPI TEMANGGUNG", img: "/images/robusta-temanggung.png", tag: "Terlaris #1" },
+        { nama: "KOPI MALABAR", img: "/images/robusta-malabar.png", tag: "Best Seller" },
+        { nama: "KOPI GARUT", img: "/images/arabica-garut.png", tag: "Favorit" },
+        { nama: "KOPI CIWIDEY", img: "/images/arabica-ciwidey.png", tag: "Best Seller" },
+        { nama: "KOPI KINTAMANI", img: "/images/kopi-5.png", tag: "Rekomendasi" }
+      ].map((produk, index) => (
+        <div className="showcase-card relative p-4" key={index}>
+          
+          {/* Badge Best Seller / Unggulan */}
+          {produk.tag && (
+            <span className="absolute top-6 left-6 z-10 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+              {produk.tag}
+            </span>
+          )}
+
+          <div className="showcase-img-container rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-white p-4">
+            <img 
+              src={produk.img} 
+              alt={produk.nama} 
+              className="showcase-img w-full h-auto object-contain mx-auto max-h-[300px]" 
+            />
+          </div>
+          
+          <div className="showcase-info mt-4">
+            <h4 className="text-lg font-bold text-stone-800 tracking-wide">{produk.nama}</h4>
+            <span className="text-xs text-amber-800 font-medium tracking-tight bg-amber-50 px-2.5 py-1 rounded mt-1 inline-block">
+              Premium Pack
+            </span>
+          </div>
+          
         </div>
-      </section>
+      ))}
+
+    </Slider>
+  </div>
+</section>
 
       {/* 5. REGIONS SECTION (Peta Nusantara) */}
       <section className="regions-section">
@@ -131,7 +154,7 @@ const Home = () => {
           <p>Kopi ibarat buah, membawa cita rasa unik dari tanah kelahirannya. Klik salah satu daerah di bawah untuk melihat koleksi produk spesifik dari wilayah tersebut:</p>
           
           <div className="regions-list">
-            {['Temanggung', 'Garut', 'Cianjur', 'Solo', 'Karawang', 'Malabar', 'Bali', 'Lampung', 'Aceh', 'Medan'].map((daerah) => (
+            {['Aceh', 'Medan', 'Sidikalang', 'Lampung', 'Puntang', 'Ciwidey', 'Malabar', 'Garut', 'Cianjur', 'Temanggung', 'Solo', 'Dampit', 'Ijen Raung', 'Bali', 'Flores', 'Toraja', 'Vietnam'].map((daerah) => (
               <button 
                 key={daerah} 
                 className="region-badge-btn"
