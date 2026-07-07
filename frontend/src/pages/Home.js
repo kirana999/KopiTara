@@ -69,30 +69,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. NARRATIVE STORY SECTION (Kutipan Owner + Kontak) */}
-      <section className="story-section">
-        <div className="container story-wrapper">
-          <div className="story-image-container">
-            <img 
-              src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
-              alt="Sejarah Kopi Tara" 
-              className="story-image"
-            />
-          </div>
-
-          <div className="story-content">
-            <h2>Mengapa Kopi Tara Tercipta?</h2>
-            <blockquote className="owner-quote">
-              "Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh."
-            </blockquote>
-            <p className="owner-name">— Founder, Kopi Tara</p>
-            
-            <p className="story-description">
-              Kami memproses biji kopi murni pilihan secara tradisional dan memastikan kesegarannya dengan konsep <strong>"digiling langsung di tempat saat Anda memesan"</strong>. Setiap cangkir yang Anda nikmati merupakan bentuk dukungan nyata terhadap masa depan mahasiswa lokal yang kami berdayakan.
-            </p>
-
+{/* Section dengan gaya Overlay sesuai referensi */}
+<section className="hero-overlay-section">
+  <div className="overlay-container">
+    <img src="/images/section-kopitara.png" alt="Kopi Tara" className="bg-image" />
+    <div className="text-overlay">
+      <h2>Kemurnian dalam Setiap Butir</h2>
+      <p>
+        "Kopi Tara adalah dedikasi atas cita rasa autentik Nusantara. Kami percaya bahwa kopi berkualitas lahir dari proses yang jujur — mulai dari pemilihan biji terbaik hingga teknik sangrai yang presisi. Kami tidak hanya menjual kopi tapi kami menghadirkan pengalaman menikmati kopi segar yang digiling langsung di tempat."
+      </p>
             <div className="owner-contacts">
-              <a href="https://instagram.com/kopitara" target="_blank" rel="noopener noreferrer" className="contact-link">
+              <a href="https://www.instagram.com/kopitaraberkah?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="contact-link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 Instagram
               </a>
@@ -100,14 +87,14 @@ const Home = () => {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 Email
               </a>
-              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="contact-link">
+              <a href="https://wa.me/62817745551" target="_blank" rel="noopener noreferrer" className="contact-link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 Telepon
               </a>
             </div>
-          </div>
-        </div>
-      </section>
+    </div>
+  </div>
+</section>
 
 {/* 4. PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
       <section className="product-slider-section">

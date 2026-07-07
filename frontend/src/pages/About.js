@@ -38,16 +38,9 @@ const About = () => {
           <h2 className="kopi-tara-story-title">Langkah Baru untuk Bumi</h2>
           <div className="kopi-tara-story-text">
             <p>
-              Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam Indonesia. 
-              Berawal dari bisnis furnitur kayu jati "Awet Jati", kami melihat urgensi yang mendalam 
-              untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita.
+            Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh.
             </p>
-            <p>
-              Kopi adalah jawaban terbaik yang kami temukan—sebuah buah ajaib yang mampu membawa 
-              kemakmuran dan kesejahteraan bagi para petani lokal, tanpa harus merusak atau menebang 
-              pohon di bumi tempatnya tumbuh. Setiap seduhan Kopi Tara adalah simbol komitmen kami 
-              untuk hijau yang abadi.
-            </p>
+            <p className="owner-name">— Founder, Kopi Tara</p>
           </div>
         </div>
       </section>

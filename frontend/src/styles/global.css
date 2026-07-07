@@ -74,83 +74,53 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 .features-grid { display: flex; justify-content: space-around; text-align: center; color: var(--kopi-susu); }
 .feature-item span { font-size: 24px; display: block; margin-bottom: 10px; }
 
-/* --- GAYA BARU SECTION CERITA (KUTIPAN OWNER & FOTO KEMASAN) --- */
-.story-section { 
-  background-color: var(--kertas-krem); 
-  color: var(--teks-gelap); 
-  padding: 100px 0; 
-}
-
-.story-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Membagi dua kolom rata */
-  gap: 60px;
-  align-items: center;
-}
-
-.story-image-container {
+/* --- STORY SECTION (Dark Premium) --- */
+.hero-overlay-section {
+  position: relative;
   width: 100%;
-  border-radius: 8px;
+  height: 500px; /* Sesuaikan tinggi dengan keinginan Anda */
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
 
-.story-image {
+.overlay-container {
+  position: relative;
   width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease;
+  height: 100%;
 }
 
-.story-image:hover {
-  transform: scale(1.03); /* Sedikit membesar saat disorot */
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4); /* Gelapkan gambar agar teks terbaca */
 }
 
-.story-content h2 {
-  font-size: 2.2rem;
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 10%; /* Sesuaikan posisi teks */
+  transform: translateY(-50%);
+  color: #ffffff;
+  max-width: 600px;
+}
+
+.text-overlay h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.text-overlay p {
+  font-size: 1.2rem;
+  line-height: 1.6;
   margin-bottom: 25px;
-  color: var(--kopi-pekat);
 }
 
-/* Desain khusus untuk kutipan (Quote) */
-.owner-quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-style: italic;
-  line-height: 1.8;
-  color: var(--kopi-sedang);
-  border-left: 4px solid var(--kopi-susu); /* Garis emas di kiri kutipan */
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
-
-.owner-name {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--kopi-pekat);
-  margin-bottom: 30px;
-}
-
-.story-description {
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: var(--teks-gelap);
-  line-height: 1.7;
-}
-
-/* Responsivitas untuk layar HP */
-@media (max-width: 768px) {
-  .story-wrapper {
-    grid-template-columns: 1fr; /* Berubah jadi atas-bawah di layar kecil */
-    gap: 40px;
-    text-align: center;
-  }
-  .owner-quote {
-    border-left: none;
-    border-bottom: 2px solid var(--kopi-susu);
-    padding-left: 0;
-    padding-bottom: 15px;
-  }
+.contact-info {
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #d5a677; /* Warna emas */
 }
 
 /* --- GAYA SLIDER PRODUK CENTER MODE & BLUR (TEMA GELAP MENYATU) --- */
@@ -493,14 +463,15 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   gap: 20px;
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid rgba(42, 23, 15, 0.1); /* Garis pemisah halus */
+  /* Mengubah border menjadi putih transparan agar terlihat di atas gambar */
+  border-top: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
 .contact-link {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--kopi-sedang);
+  color: white; /* Diubah menjadi putih sesuai permintaan */
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -508,16 +479,18 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 }
 
 .contact-link:hover {
-  color: var(--kopi-susu); /* Berubah jadi warna emas saat di-hover */
-  transform: translateY(-2px); /* Melayang sedikit ke atas */
+  /* Saat di-hover, warna sedikit berubah ke emas (kopi-susu) agar terlihat interaktif */
+  color: var(--kopi-susu); 
+  transform: translateY(-2px);
 }
 
 .contact-link svg {
   transition: stroke 0.3s ease;
+  stroke: white; /* Ikon juga dibuat putih agar seragam */
 }
 
 .contact-link:hover svg {
-  stroke: var(--kopi-susu);
+  stroke: var(--kopi-susu); /* Ikon berubah warna saat di-hover */
 }
 
 
