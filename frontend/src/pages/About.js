@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import '../styles/global.css'; // Memanggil global.css tempat style berada
+import Footer from '../components/Footer'; // ◄ Pastikan Footer sudah dibuat
+import '../styles/global.css';
 
 const About = () => {
   return (
     <div className="kopi-tara-page-wrapper">
       <Navbar />
 
-      {/* ================= HERO SECTION (BAGIAN ATAS) ================= */}
+      {/* ================= HERO SECTION ================= */}
       <header className="kopi-tara-hero">
         <div className="kopi-tara-hero-text">
           <h1 className="kopi-tara-hero-title">CERITA DI BALIK RASA</h1>
@@ -16,15 +17,13 @@ const About = () => {
           </p>
         </div>
 
-        {/* Cangkir Kopi di Tengah yang Mengambang */}
         <div className="kopi-tara-cup-container">
-            {/* ─── TAMBAHAN: ELEMEN UAP ANIMASI ─── */}
-            <div className="kopi-uap-wrapper">
-                <span style={{ '--i': 1 }}></span>
-                <span style={{ '--i': 3 }}></span>
-                <span style={{ '--i': 2 }}></span>
-            </div>
-            <img 
+          <div className="kopi-uap-wrapper">
+            <span style={{ '--i': 1 }}></span>
+            <span style={{ '--i': 3 }}></span>
+            <span style={{ '--i': 2 }}></span>
+          </div>
+          <img 
             src="/images/cangkir-kopi-tara.png" 
             alt="Cangkir Kopi Tara" 
             className="kopi-tara-cup-img" 
@@ -32,39 +31,30 @@ const About = () => {
         </div>
       </header>
 
-        {/* ─── BARU: SECTION CERITA ASAL USUL (SANGAT COCOK DI SINI) ─── */}
+      {/* ================= STORY SECTION ================= */}
       <section className="kopi-tara-intro-story">
         <div className="kopi-tara-story-container">
           <h2 className="kopi-tara-story-title">Langkah Baru untuk Bumi</h2>
           <div className="kopi-tara-story-text">
             <p>
-            Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh.
+              Kopi Tara lahir dari sebuah kesadaran besar untuk menjaga kelestarian alam. Berawal dari bisnis furnitur kayu jati 'Awet Jati', kami melihat urgensi untuk beralih ke komoditas yang jauh lebih ramah terhadap ekosistem hutan kita. Kopi adalah jawabannya—sebuah buah ajaib yang membawa kemakmuran tanpa merusak bumi tempatnya tumbuh.
             </p>
             <p className="owner-name">— Founder, Kopi Tara</p>
           </div>
         </div>
       </section>
 
-{/* ================= ABOUT SECTION (VISI & MISI) ================= */}
+      {/* ================= ABOUT SECTION (VISI & MISI) ================= */}
       <section className="kopi-tara-about-section">
         <div className="kopi-tara-about-container">
-          
-          {/* Kolom Kiri: Visi & Misi */}
           <div className="kopi-tara-about-content">
             <span className="kopi-tara-about-subtitle">Arah & Tujuan Kami</span>
             <h2 className="kopi-tara-about-title">Visi & Misi</h2>
-            
             <div className="kopi-tara-about-text">
-              {/* Blok Visi */}
               <div className="visi-misi-block">
                 <h3>Visi</h3>
-                <p>
-                  Menjadi pelopor komoditas kopi Nusantara yang mandiri dan berkelanjutan, 
-                  sekaligus menjadi pilar utama dalam pemulihan serta pelestarian ekosistem hutan Indonesia.
-                </p>
+                <p>Menjadi pelopor komoditas kopi Nusantara yang mandiri dan berkelanjutan, sekaligus menjadi pilar utama dalam pemulihan serta pelestarian ekosistem hutan Indonesia.</p>
               </div>
-
-              {/* Blok Misi */}
               <div className="visi-misi-block">
                 <h3>Misi</h3>
                 <ul>
@@ -76,7 +66,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Kolom Kanan: Gambar Biji Kopi Nusantara */}
           <div className="kopi-tara-map-wrapper">
             <div className="kopi-tara-map-box">
               <img 
@@ -84,79 +73,23 @@ const About = () => {
                 alt="Biji Kopi Nusantara" 
                 className="kopi-tara-map-img" 
               />
-              <div className="kopi-tara-map-tooltip">
-                <div className="kopi-tara-tooltip-content">
-                  <span className="kopi-tara-tooltip-title">BIJI PILIHAN</span>
-                  <div className="kopi-tara-tooltip-stars">★★★★★</div>
-                </div>
-                <div className="kopi-tara-tooltip-arrow"></div>
-                <div className="kopi-tara-map-pin"></div>
-              </div>
             </div>
           </div>
         </div>
       </section>
-{/* ================= MAP NUSANTARA SECTION ================= */}
-      <section className="kopi-tara-nusantara-section">
-        <div className="kopi-tara-map-header">
-          <span className="kopi-tara-map-subtitle">Eksplorasi Varian</span>
-          <h2 className="kopi-tara-map-title">Koleksi Kopi Nusantara</h2>
-          <p className="kopi-tara-map-desc">
-            Nikmati kekayaan cita rasa autentik dari berbagai penjuru Indonesia. 
-            Setiap varian membawa karakter unik tanah asalnya langsung ke cangkir Anda.
-          </p>
-        </div>
 
-        <div className="kopi-tara-nusantara-map-container">
-          <div className="kopi-tara-nusantara-map-wrapper">
-            
-            {/* Gambar Peta Emas yang Baru */}
-            <img 
-              src="/images/peta-tara.png" // ◄ Pastikan file download (5).jfif sudah disimpan dengan nama ini di folder public/images/
-              alt="Peta Nusantara Kopi Tara" 
-              className="kopi-tara-indonesia-map-img" 
-            />
+      {/* ================= FOOTER ================= */}
+      <Footer />
 
-            {/* PIN 1: ACEH GAYO (Ujung Kiri Atas Sumatera) */}
-            <div className="kopi-pin-lokasi pin-gayo">
-              <div className="kopi-kemasan-tooltip">
-                <img src="/images/cangkir-kopi-tara.png" alt="Kopi Gayo" className="kopi-kemasan-mini-img" />
-                <span className="kopi-nama-daerah">Aceh Gayo</span>
-              </div>
-              <div className="kopi-pulse-pin"></div>
-            </div>
-
-            {/* PIN 2: SULAWESI TORAJA (Bagian Tengah Pulau Sulawesi) */}
-            <div className="kopi-pin-lokasi pin-toraja">
-              <div className="kopi-kemasan-tooltip">
-                <img src="/images/cangkir-kopi-tara.png" alt="Kopi Toraja" className="kopi-kemasan-mini-img" />
-                <span className="kopi-nama-daerah">Toraja</span>
-              </div>
-              <div className="kopi-pulse-pin"></div>
-            </div>
-
-            {/* PIN 3: BALI KINTAMANI (Pulau Kecil di Bawah Timur Jawa) */}
-            <div className="kopi-pin-lokasi pin-kintamani">
-              <div className="kopi-kemasan-tooltip">
-                <img src="/images/cangkir-kopi-tara.png" alt="Kopi Kintamani" className="kopi-kemasan-mini-img" />
-                <span className="kopi-nama-daerah">Kintamani</span>
-              </div>
-              <div className="kopi-pulse-pin"></div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* Filter SVG Rahasia untuk Uap */}
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <filter id="kopi-uap-alami">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" />
+        </filter>
+      </svg>
     </div>
   );
-
-  {/* Filter SVG Rahasia untuk Membuat Uap Meliuk Alami */}
-<svg width="0" height="0" style={{ position: 'absolute' }}>
-  <filter id="kopi-uap-alami" x="0%" y="0%" width="100%" height="100%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G" />
-  </filter>
-</svg>
 };
 
 export default About;

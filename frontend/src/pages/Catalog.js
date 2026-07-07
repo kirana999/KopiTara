@@ -1,89 +1,148 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../styles/global.css';
 
-// Data Produk Sementara (Nanti akan diganti dengan data dari Backend/Database)
-const dummyProducts = [
-  { id: 1, name: 'Kopi Malabar Premium', region: 'Malabar', price: 85000, img: '/images/kopi-1.png' },
-  { id: 2, name: 'Kopi Temanggung Roast', region: 'Temanggung', price: 75000, img: '/images/kopi-2.png' },
-  { id: 3, name: 'Kopi Aceh Gayo Asli', region: 'Aceh', price: 90000, img: '/images/kopi-3.png' },
-  { id: 4, name: 'Kopi Toraja Arabica', region: 'Toraja', price: 88000, img: '/images/kopi-1.png' },
-  { id: 5, name: 'Kopi Bali Kintamani', region: 'Bali', price: 82000, img: '/images/kopi-2.png' },
-  { id: 6, name: 'Kopi Mandailing Estate', region: 'Medan', price: 86000, img: '/images/kopi-3.png' },
-];
-
-// Daftar Daerah untuk Filter
-const regions = ['Semua', 'Temanggung', 'Malabar', 'Aceh', 'Toraja', 'Bali', 'Medan'];
+const brandCategories = ['Semua Produk', 'Kopi Otok (Sachet)', 'Arabica Premium', 'Robusta Authentic'];
 
 const Catalog = () => {
-  const [activeFilter, setActiveFilter] = useState('Semua');
-  const location = useLocation();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState('Semua Produk');
+  const [selectedSizes, setSelectedSizes] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0); // Untuk navigasi slider
 
-  // Membaca URL jika ada kiriman filter daerah dari Halaman Beranda
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const daerahDariUrl = params.get('daerah');
-    
-    if (daerahDariUrl && regions.includes(daerahDariUrl)) {
-      setActiveFilter(daerahDariUrl);
-    }
-  }, [location]);
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('http://localhost:5000/api/products'); 
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Gagal memuat data produk:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
-  // Logika Filter Produk
-  const filteredProducts = activeFilter === 'Semua' 
-    ? dummyProducts 
-    : dummyProducts.filter(product => product.region === activeFilter);
+  const handleSizeChange = (productId, size) => {
+    setSelectedSizes(prev => ({ ...prev, [productId]: size }));
+  };
+
+  const filteredProducts = activeFilter === 'Semua Produk'
+    ? products
+    : products.filter(product => product.category === activeFilter);
+
+  // Reset indeks slider jika filter kategori diganti
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [activeFilter]);
+
+  const handlePrev = () => {
+    setCurrentIndex(prev => prev === 0 ? filteredProducts.length - 1 : prev - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => prev === filteredProducts.length - 1 ? 0 : prev + 1);
+  };
+
+  const currentProduct = filteredProducts[currentIndex];
 
   return (
     <div className="catalog-page">
       <Navbar />
       
-      {/* HEADER KATALOG */}
       <header className="catalog-header">
-        <div className="container">
-          <h1>Katalog Produk</h1>
-          <p>Eksplorasi kekayaan cita rasa kopi murni dari berbagai penjuru Nusantara.</p>
+        <div className="container mx-auto px-4">
+          <h1>Koleksi Mahakarya Kopi</h1>
+          <p>Tiga pilar rasa autentik Nusantara yang dikurasi khusus untuk memenuhi selera penikmat kopi sejati.</p>
         </div>
       </header>
 
-      <section className="catalog-main container">
-        
-        {/* MENU FILTER DAERAH */}
+      <section className="catalog-main">
+        {/* 4 BUTTON ATAS */}
         <div className="catalog-filter-bar">
-          {regions.map((region) => (
+          {brandCategories.map((brand) => (
             <button 
-              key={region}
-              className={`filter-btn ${activeFilter === region ? 'active' : ''}`}
-              onClick={() => setActiveFilter(region)}
+              key={brand}
+              className={`filter-btn ${activeFilter === brand ? 'active' : ''}`}
+              onClick={() => setActiveFilter(brand)}
             >
-              {region}
+              {brand}
             </button>
           ))}
         </div>
 
-        {/* GRID PRODUK */}
-        <div className="catalog-grid">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <div className="catalog-card" key={product.id}>
-                <div className="catalog-img-wrapper">
-                  <img src={product.img} alt={product.name} className="catalog-product-img" />
-                  <span className="catalog-region-badge">{product.region}</span>
-                </div>
-                <div className="catalog-info">
-                  <h3>{product.name}</h3>
-                  <p className="catalog-price">Rp {product.price.toLocaleString('id-ID')}</p>
-                  <button className="btn-beli-katalog">Beli Sekarang</button>
-                </div>
+        {/* AREA SHOWCASE BAWAH (SEPERTI GAMBAR KAPAL API) */}
+        {loading ? (
+          <div className="catalog-loading">Menyiapkan katalog produk premium...</div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="catalog-empty">Tidak ada produk dalam kategori ini.</div>
+        ) : (
+          <div className="catalog-grid">
+            
+            {/* SISI KIRI: SLIDER GAMBAR */}
+            <div className="catalog-card">
+              <button onClick={handlePrev} className="slider-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" style={{width: '20px', height: '20px'}}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+
+              <div className="catalog-img-wrapper">
+                <img src={currentProduct.img} alt={currentProduct.name} />
+                {currentProduct.region && (
+                  <span className="region-badge">{currentProduct.region}</span>
+                )}
               </div>
-            ))
-          ) : (
-            <div className="catalog-empty">
-              <h3>Maaf, produk untuk daerah ini sedang kosong.</h3>
+
+              <button onClick={handleNext} className="slider-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" style={{width: '20px', height: '20px'}}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
             </div>
-          )}
-        </div>
+            
+            {/* SISI KANAN: DETAIL INFO (DIBUNGKUS MASUK KE SINI SEMUA AGAR TIDAK LEPAS) */}
+            <div className="catalog-info">
+              <span className="category-tag">{currentProduct.category}</span>
+              <h3>{currentProduct.name}</h3>
+              
+              <p className="product-desc">
+                {currentProduct.description || 'Nikmati sensasi keaslian cita rasa kopi Nusantara pilihan terbaik yang diproses secara higienis untuk menghasilkan kenikmatan murni.'}
+              </p>
+
+              {/* Selektor Ukuran */}
+              <div className="catalog-size-selector">
+                <select 
+                  value={selectedSizes[currentProduct.id] || '100gr'}
+                  onChange={(e) => handleSizeChange(currentProduct.id, e.target.value)}
+                >
+                  {currentProduct.category === 'Kopi Otok (Sachet)' ? (
+                    <option value="sachet">Kemasan Sachet</option>
+                  ) : (
+                    <>
+                      <option value="100gr">Kemasan 100 gr</option>
+                      <option value="1kg">Kemasan 1 Kg</option>
+                    </>
+                  )}
+                </select>
+              </div>
+
+              {/* Harga & Tombol Kunjungi */}
+              <div className="price-action-section">
+                <span className="price-label">Harga Premium</span>
+                <p className="price-amount">Rp {currentProduct.price?.toLocaleString('id-ID')}</p>
+                <button className="btn-visit">
+                  Kunjungi Situs &gt;&gt;
+                </button>
+              </div>
+            </div>
+
+          </div>
+        )}
       </section>
     </div>
   );

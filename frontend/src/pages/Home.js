@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from "react-slick"; // Import Slider untuk produk
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import '../styles/global.css';
 
 const Home = () => {
@@ -26,6 +27,45 @@ const Home = () => {
     ]
   };
   
+const regions = [
+  { 
+    name: "Sumatera", 
+    class: "pin-sumatera", 
+    coords: { top: "22%", left: "12%" }, // Aceh, Gayo, Lintong, Sidikalang, Lampung, Pagar Alam, Kerinci
+    kopi: ["Gayo", "Lintong", "Sidikalang", "Lampung", "Pagar Alam", "Kerinci"] 
+  },
+  { 
+    name: "Jawa Barat", 
+    class: "pin-jabar", 
+    coords: { top: "40%", left: "28%" }, // Putang, Malabar, Ciwidey, Garut, Mekar Wangi
+    kopi: ["Putang", "Malabar", "Ciwidey", "Garut", "Mekar Wangi"] 
+  },
+  { 
+    name: "Jawa Tengah", 
+    class: "pin-jateng", 
+    coords: { top: "44%", left: "35%" }, // Temanggung, Semar Mesem
+    kopi: ["Temanggung", "Semar Mesem"] 
+  },
+  { 
+    name: "Jawa Timur", 
+    class: "pin-jatim", 
+    coords: { top: "46%", left: "42%" }, // Dampit, Ijen Raung
+    kopi: ["Dampit", "Ijen Raung"] 
+  },
+  { 
+    name: "Sulawesi", 
+    class: "pin-toraja", 
+    coords: { top: "30%", left: "62%" }, // Toraja
+    kopi: ["Toraja"] 
+  },
+  { 
+    name: "Bali & NTT", 
+    class: "pin-bali", 
+    coords: { top: "50%", left: "50%" }, // Kintamani, Flores Bajawa
+    kopi: ["Kintamani", "Flores Bajawa"] 
+  }
+];
+
   return (
     <div className="home-page">
       <Navbar />
@@ -78,20 +118,6 @@ const Home = () => {
       <p>
         "Kopi Tara adalah dedikasi atas cita rasa autentik Nusantara. Kami percaya bahwa kopi berkualitas lahir dari proses yang jujur — mulai dari pemilihan biji terbaik hingga teknik sangrai yang presisi. Kami tidak hanya menjual kopi tapi kami menghadirkan pengalaman menikmati kopi segar yang digiling langsung di tempat."
       </p>
-            <div className="owner-contacts">
-              <a href="https://www.instagram.com/kopitaraberkah?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="contact-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                Instagram
-              </a>
-              <a href="mailto:halo@coffetara.id" className="contact-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                Email
-              </a>
-              <a href="https://wa.me/62817745551" target="_blank" rel="noopener noreferrer" className="contact-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                Telepon
-              </a>
-            </div>
     </div>
   </div>
 </section>
@@ -147,26 +173,49 @@ const Home = () => {
   </div>
 </section>
 
-      {/* 5. REGIONS SECTION (Peta Nusantara) */}
-      <section className="regions-section">
-        <div className="container">
-          <h2>Kekayaan Kopi Nusantara</h2>
-          <p>Kopi ibarat buah, membawa cita rasa unik dari tanah kelahirannya. Klik salah satu daerah di bawah untuk melihat koleksi produk spesifik dari wilayah tersebut:</p>
+{/* ================= MAP NUSANTARA SECTION ================= */}
+<section className="kopi-tara-nusantara-section">
+  <div className="kopi-tara-map-header">
+    <span className="kopi-tara-map-subtitle">Eksplorasi Varian</span>
+    <h2 className="kopi-tara-map-title">Koleksi Kopi Nusantara</h2>
+    <p className="kopi-tara-map-desc">
+      Setiap titik mewakili kekayaan tanah Indonesia. Temukan kopi pilihan dari daerah favorit Anda.
+    </p>
+  </div>
+
+  <div className="kopi-tara-nusantara-map-container">
+    <div className="kopi-tara-nusantara-map-wrapper">
+      <img src="/images/peta-tara.png" alt="Peta Nusantara" className="kopi-tara-indonesia-map-img" />
+
+      {regions.map((region) => (
+        <div 
+          key={region.name} 
+          className={`kopi-pin-lokasi ${region.class}`}
+          style={{ top: region.coords.top, left: region.coords.left }}
+        >
+          {/* Label Nama Daerah (Selalu Muncul) */}
+          <div className="label-daerah">{region.name}</div>
           
-          <div className="regions-list">
-            {['Aceh', 'Medan', 'Sidikalang', 'Lampung', 'Puntang', 'Ciwidey', 'Malabar', 'Garut', 'Cianjur', 'Temanggung', 'Solo', 'Dampit', 'Ijen Raung', 'Bali', 'Flores', 'Toraja', 'Vietnam'].map((daerah) => (
-              <button 
-                key={daerah} 
-                className="region-badge-btn"
-                onClick={() => handleRegionClick(daerah)}
-              >
-                {daerah}
-              </button>
-            ))}
+          {/* Pulse Pin */}
+          <div className="kopi-pulse-pin"></div>
+
+          {/* Modal / Tooltip daftar kopi */}
+          <div className="kopi-kemasan-tooltip">
+            <h4 className="tooltip-title">{region.name}</h4>
+            <ul className="tooltip-kopi-list">
+              {region.kopi.map((nama, idx) => (
+                <li key={idx} onClick={() => handleRegionClick(nama)}>
+                  {nama}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-
+      ))}
+    </div>
+  </div>
+</section>
+<Footer/>
     </div>
   );
 };
