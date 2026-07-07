@@ -1299,20 +1299,20 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 /* ── Main wrapper ── */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px; /* Disesuaikan untuk menutupi watermark */
-  right: 15px;  /* Disesuaikan untuk menutupi watermark */
+  bottom: 32px;
+  right: 16px;
   z-index: 99999;
 
-  /* Pill shape */
-  width: 260px;
-  height: 74px;
+  /* Compact pill */
+  width: 170px;
+  height: 48px;
   border-radius: 50px;
 
   /* Premium green gradient */
   background: linear-gradient(135deg, #2ecc71 0%, #25D366 45%, #1aab52 100%);
 
   /* Baseline shadow */
-  box-shadow: 0 8px 28px rgba(37,211,102,0.40), 0 4px 12px rgba(0,0,0,0.30);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.35), 0 3px 8px rgba(0,0,0,0.25);
 
   /* Layout */
   display: flex;
@@ -1323,17 +1323,15 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   cursor: pointer;
   user-select: none;
 
-  /* Entrance animation — runs once on load */
+  /* Entrance animation */
   animation:
     waEnter   0.6s cubic-bezier(0.22, 1, 0.36, 1) both,
     waBreathe 4s  ease-in-out 0.8s infinite;
 
-  /* Smooth hover transition */
   transition:
     transform   0.35s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow  0.35s ease;
 
-  /* Always above everything */
   isolation: isolate;
 }
 
@@ -1375,16 +1373,16 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 74px;
-  height: 74px;
+  width: 48px;
+  height: 48px;
 }
 
 .whatsapp-float__icon svg {
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   fill: #ffffff;
   display: block;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.20));
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.20));
 }
 
 /* ── Divider line between icon and text ── */
@@ -1392,10 +1390,10 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   position: relative;
   z-index: 2;
   width: 1px;
-  height: 40px;
+  height: 26px;
   background: rgba(255,255,255,0.25);
   flex-shrink: 0;
-  margin-right: 2px;
+  margin-right: 1px;
 }
 
 /* ── Text block ── */
@@ -1406,26 +1404,26 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  padding: 0 20px 0 14px;
+  padding: 0 10px 0 8px;
   gap: 2px;
 }
 
 .wa-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: #ffffff;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   line-height: 1;
   white-space: nowrap;
 }
 
 .wa-subtitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 400;
   color: rgba(255,255,255,0.82);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   line-height: 1;
   white-space: nowrap;
 }
@@ -1438,10 +1436,10 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;
-  padding-right: 20px;
+  padding-right: 10px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
@@ -1453,20 +1451,20 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
 /* ── Mobile: slightly smaller ── */
 @media (max-width: 640px) {
   .whatsapp-float {
-    width: 220px;
-    height: 62px;
-    bottom: 16px;
-    right: 16px;
+    width: 140px;
+    height: 42px;
+    bottom: 24px;
+    right: 12px;
     border-radius: 40px;
   }
   .whatsapp-float__icon {
-    width: 62px;
-    height: 62px;
+    width: 42px;
+    height: 42px;
   }
   .whatsapp-float__icon svg {
-    width: 30px;
-    height: 30px;
+    width: 18px;
+    height: 18px;
   }
-  .wa-title   { font-size: 0.72rem; }
-  .wa-subtitle { font-size: 0.60rem; }
+  .wa-title   { font-size: 0.62rem; }
+  .wa-subtitle { font-size: 0.54rem; }
 }
