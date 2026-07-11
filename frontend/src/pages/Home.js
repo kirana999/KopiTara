@@ -27,43 +27,24 @@ const Home = () => {
     ]
   };
   
-const regions = [
-  { 
-    name: "Sumatera", 
-    class: "pin-sumatera", 
-    coords: { top: "22%", left: "12%" }, // Aceh, Gayo, Lintong, Sidikalang, Lampung, Pagar Alam, Kerinci
-    kopi: ["Gayo", "Lintong", "Sidikalang", "Lampung", "Pagar Alam", "Kerinci"] 
-  },
-  { 
-    name: "Jawa Barat", 
-    class: "pin-jabar", 
-    coords: { top: "40%", left: "28%" }, // Putang, Malabar, Ciwidey, Garut, Mekar Wangi
-    kopi: ["Putang", "Malabar", "Ciwidey", "Garut", "Mekar Wangi"] 
-  },
-  { 
-    name: "Jawa Tengah", 
-    class: "pin-jateng", 
-    coords: { top: "44%", left: "35%" }, // Temanggung, Semar Mesem
-    kopi: ["Temanggung", "Semar Mesem"] 
-  },
-  { 
-    name: "Jawa Timur", 
-    class: "pin-jatim", 
-    coords: { top: "46%", left: "42%" }, // Dampit, Ijen Raung
-    kopi: ["Dampit", "Ijen Raung"] 
-  },
-  { 
-    name: "Sulawesi", 
-    class: "pin-toraja", 
-    coords: { top: "30%", left: "62%" }, // Toraja
-    kopi: ["Toraja"] 
-  },
-  { 
-    name: "Bali & NTT", 
-    class: "pin-bali", 
-    coords: { top: "50%", left: "50%" }, // Kintamani, Flores Bajawa
-    kopi: ["Kintamani", "Flores Bajawa"] 
-  }
+const daerahKopi = [
+  { nama: 'Gayo (Aceh)', singkat: 'Gayo', koordinat: { top: '15%', left: '12%' }, varian: ['Arabika Gayo'] },
+  { nama: 'Lintong (Sumatera Utara)', singkat: 'Lintong', koordinat: { top: '23%', left: '16%' }, varian: ['Arabika Lintong'] },
+  { nama: 'Sidikalang (Dairi, Sumut)', singkat: 'Sidikalang', koordinat: { top: '25%', left: '14%' }, varian: ['Arabika Sidikalang', 'Robusta Sidikalang'] },
+  { nama: 'Kerinci (Jambi)', singkat: 'Kerinci', koordinat: { top: '38%', left: '23%' }, varian: ['Robusta Kerinci', 'Robusta Kerinci (Sachet)'] },
+  { nama: 'Pagar Alam (Sumsel)', singkat: 'Pagar Alam', koordinat: { top: '48%', left: '26%' }, varian: ['Robusta Pagar Alam'] },
+  { nama: 'Lampung', singkat: 'Lampung', koordinat: { top: '56%', left: '32%' }, varian: ['Robusta Lampung'] },
+  { nama: 'Puntang (Bandung, Jabar)', singkat: 'Puntang', koordinat: { top: '67%', left: '36%' }, varian: ['Arabika Puntang'] },
+  { nama: 'Mekar Wangi (Bandung Barat)', singkat: 'Mekar Wangi', koordinat: { top: '68%', left: '38%' }, varian: ['Arabika Mekar Wangi'] },
+  { nama: 'Malabar (Bandung, Jabar)', singkat: 'Malabar', koordinat: { top: '71%', left: '37%' }, varian: ['Arabika Malabar', 'Robusta Malabar'] },
+  { nama: 'Ciwidey (Bandung, Jabar)', singkat: 'Ciwidey', koordinat: { top: '72%', left: '35%' }, varian: ['Arabika Ciwidey'] },
+  { nama: 'Garut (Jabar)', singkat: 'Garut', koordinat: { top: '71%', left: '39%' }, varian: ['Arabika Garut'] },
+  { nama: 'Temanggung (Jateng)', singkat: 'Temanggung', koordinat: { top: '69%', left: '44%' }, varian: ['Arabika Temanggung', 'Robusta Temanggung', 'Robusta Temanggung (Sachet)'] },
+  { nama: 'Dampit (Malang, Jatim)', singkat: 'Dampit', koordinat: { top: '72%', left: '49%' }, varian: ['Robusta Dampit', 'Robusta Dampit (Sachet)'] },
+  { nama: 'Ijen Raung (Jatim)', singkat: 'Ijen Raung', koordinat: { top: '71%', left: '52%' }, varian: ['Arabika Ijen Raung'] },
+  { nama: 'Bali Kintamani', singkat: 'Kintamani', koordinat: { top: '72%', left: '55%' }, varian: ['Arabika Bali Kintamani'] },
+  { nama: 'Flores Bajawa (NTT)', singkat: 'Flores', koordinat: { top: '75%', left: '61%' }, varian: ['Arabika Flores Bajawa'] },
+  { nama: 'Toraja (Sulsel)', singkat: 'Toraja', koordinat: { top: '46%', left: '65%' }, varian: ['Robusta Toraja', 'Robusta Toraja (Sachet)'] }
 ];
 
   return (
@@ -112,7 +93,7 @@ const regions = [
 {/* Section dengan gaya Overlay sesuai referensi */}
 <section className="hero-overlay-section">
   <div className="overlay-container">
-    <img src="/images/section-kopitara.png" alt="Kopi Tara" className="bg-image" />
+    <img src="/images/section-kopitara.jpeg" alt="Kopi Tara" className="bg-image" />
     <div className="text-overlay">
       <h2>Kemurnian dalam Setiap Butir</h2>
       <p>
@@ -173,39 +154,48 @@ const regions = [
   </div>
 </section>
 
-{/* ================= MAP NUSANTARA SECTION ================= */}
+{/* ================= SECTION 5: MAP NUSANTARA ================= */}
 <section className="kopi-tara-nusantara-section">
   <div className="kopi-tara-map-header">
     <span className="kopi-tara-map-subtitle">Eksplorasi Varian</span>
     <h2 className="kopi-tara-map-title">Koleksi Kopi Nusantara</h2>
     <p className="kopi-tara-map-desc">
-      Setiap titik mewakili kekayaan tanah Indonesia. Temukan kopi pilihan dari daerah favorit Anda.
+      Setiap titik mewakili kekayaan tanah Indonesia. Sorot pin untuk menemukan kopi pilihan dari daerah favorit Anda.
     </p>
   </div>
 
   <div className="kopi-tara-nusantara-map-container">
     <div className="kopi-tara-nusantara-map-wrapper">
-      <img src="/images/peta-tara.png" alt="Peta Nusantara" className="kopi-tara-indonesia-map-img" />
+      {/* Gambar latar peta emas yang kamu upload */}
+      <img 
+        src="/images/peta-tara.png" 
+        alt="Peta Nusantara Kopintara" 
+        className="kopi-tara-indonesia-map-img"
+      />
 
-      {regions.map((region) => (
+      {/* Mapping Pin di atas Peta */}
+      {daerahKopi.map((daerah, index) => (
         <div 
-          key={region.name} 
-          className={`kopi-pin-lokasi ${region.class}`}
-          style={{ top: region.coords.top, left: region.coords.left }}
+          key={index}
+          className="kopi-pin-lokasi"
+          style={{ top: daerah.koordinat.top, left: daerah.koordinat.left }}
         >
-          {/* Label Nama Daerah (Selalu Muncul) */}
-          <div className="label-daerah">{region.name}</div>
-          
-          {/* Pulse Pin */}
-          <div className="kopi-pulse-pin"></div>
+          {/* Label Singkat Nama Daerah yang Selalu Muncul */}
+          <div className="label-daerah-minimal">{daerah.singkat}</div>
 
-          {/* Modal / Tooltip daftar kopi */}
+          {/* Efek Pin Berdenyut */}
+          <div className="kopi-pulse-pin">
+            <div className="pin-pulse-ring"></div>
+            <div className="pin-pulse-dot"></div>
+          </div>
+
+          {/* Tooltip Detail Kopi (Muncul saat Hover) */}
           <div className="kopi-kemasan-tooltip">
-            <h4 className="tooltip-title">{region.name}</h4>
+            <h4 className="tooltip-title">{daerah.nama}</h4>
             <ul className="tooltip-kopi-list">
-              {region.kopi.map((nama, idx) => (
-                <li key={idx} onClick={() => handleRegionClick(nama)}>
-                  {nama}
+              {daerah.varian.map((varian, idx) => (
+                <li key={idx} onClick={() => console.log(`Klik: ${varian}`)}>
+                  {varian}
                 </li>
               ))}
             </ul>

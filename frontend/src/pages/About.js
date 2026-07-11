@@ -66,15 +66,15 @@ const About = () => {
             </div>
           </div>
 
-          <div className="kopi-tara-map-wrapper">
-            <div className="kopi-tara-map-box">
-              <img 
-                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500&auto=format&fit=crop&q=80" 
-                alt="Biji Kopi Nusantara" 
-                className="kopi-tara-map-img" 
-              />
-            </div>
-          </div>
+<div className="kopi-tara-map-wrapper">
+  <div className="kopi-tara-map-box">
+    <img
+      src="/images/tangan-petani.png"
+      alt="Biji Kopi Nusantara"
+      className="kopi-tara-map-img"
+    />
+  </div>
+</div>
         </div>
       </section>
 

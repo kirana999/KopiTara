@@ -8,141 +8,132 @@ const Catalog = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('Semua Produk');
-  const [selectedSizes, setSelectedSizes] = useState({});
-  const [currentIndex, setCurrentIndex] = useState(0); // Untuk navigasi slider
+  const [selectedVariants, setSelectedVariants] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const cleanDescription = (desc, name) => {
+    if (!desc) return 'Nikmati sensasi keaslian cita rasa kopi Nusantara pilihan terbaik.';
+    return desc.replace(new RegExp(`Kopi\\s+${name}`, 'gi'), '').trim();
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/products'); 
+        const response = await fetch('http://localhost:5000/api/products');
         const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Gagal memuat data produk:", error);
-      } finally {
-        setLoading(false);
-      }
+
+        const grouped = data.reduce((acc, curr) => {
+          const key = curr.name;
+          if (!acc[key]) {
+            acc[key] = { 
+              ...curr, 
+              variants: [],
+              category: curr.name.toLowerCase().includes('robusta') ? 'Robusta Authentic' : 
+                        curr.name.toLowerCase().includes('arabika') ? 'Arabica Premium' : 'Lainnya'
+            };
+          }
+          acc[key].variants.push({ type: curr.packaging_type, weight: curr.weight, price: curr.price });
+          return acc;
+        }, {});
+        setProducts(Object.values(grouped));
+      } catch (error) { console.error("Gagal memuat data:", error); } 
+      finally { setLoading(false); }
     };
     fetchProducts();
   }, []);
 
-  const handleSizeChange = (productId, size) => {
-    setSelectedSizes(prev => ({ ...prev, [productId]: size }));
-  };
+  const filteredProducts = activeFilter === 'Semua Produk' ? products :
+    activeFilter === 'Kopi Otok (Sachet)' ? products.filter(p => p.variants.some(v => v.type === 'Saset')) :
+    products.filter(p => p.category === activeFilter);
 
-  const filteredProducts = activeFilter === 'Semua Produk'
-    ? products
-    : products.filter(product => product.category === activeFilter);
+  useEffect(() => { setCurrentIndex(0); }, [activeFilter]);
 
-  // Reset indeks slider jika filter kategori diganti
   useEffect(() => {
-    setCurrentIndex(0);
-  }, [activeFilter]);
+    if (activeFilter === 'Kopi Otok (Sachet)' && filteredProducts.length > 0) {
+      const newSelections = { ...selectedVariants };
+      filteredProducts.forEach(product => {
+        const sachetIndex = product.variants.findIndex(v => v.type === 'Saset');
+        if (sachetIndex !== -1) newSelections[product.name] = sachetIndex.toString();
+      });
+      setSelectedVariants(newSelections);
+    }
+  }, [activeFilter, filteredProducts]);
 
-  const handlePrev = () => {
-    setCurrentIndex(prev => prev === 0 ? filteredProducts.length - 1 : prev - 1);
-  };
+  if (loading) return <div className="catalog-loading">Memuat...</div>;
+  if (filteredProducts.length === 0) return <div className="catalog-empty">Tidak ada produk ditemukan.</div>;
 
-  const handleNext = () => {
-    setCurrentIndex(prev => prev === filteredProducts.length - 1 ? 0 : prev + 1);
-  };
-
-  const currentProduct = filteredProducts[currentIndex];
+  const safeIndex = currentIndex >= filteredProducts.length ? 0 : currentIndex;
+  const currentProduct = filteredProducts[safeIndex];
+  const vIndex = parseInt(selectedVariants[currentProduct.name] || 0);
+  const currentVariant = currentProduct.variants[vIndex] || currentProduct.variants[0];
 
   return (
     <div className="catalog-page">
       <Navbar />
-      
       <header className="catalog-header">
         <div className="container mx-auto px-4">
           <h1>Koleksi Mahakarya Kopi</h1>
-          <p>Tiga pilar rasa autentik Nusantara yang dikurasi khusus untuk memenuhi selera penikmat kopi sejati.</p>
         </div>
       </header>
 
       <section className="catalog-main">
-        {/* 4 BUTTON ATAS */}
         <div className="catalog-filter-bar">
           {brandCategories.map((brand) => (
-            <button 
-              key={brand}
-              className={`filter-btn ${activeFilter === brand ? 'active' : ''}`}
-              onClick={() => setActiveFilter(brand)}
-            >
+            <button key={brand} className={`filter-btn ${activeFilter === brand ? 'active' : ''}`} onClick={() => setActiveFilter(brand)}>
               {brand}
             </button>
           ))}
         </div>
 
-        {/* AREA SHOWCASE BAWAH (SEPERTI GAMBAR KAPAL API) */}
-        {loading ? (
-          <div className="catalog-loading">Menyiapkan katalog produk premium...</div>
-        ) : filteredProducts.length === 0 ? (
-          <div className="catalog-empty">Tidak ada produk dalam kategori ini.</div>
-        ) : (
-          <div className="catalog-grid">
+        <div className="catalog-grid">
+          <div className="catalog-card">
+            <button 
+              onClick={() => setCurrentIndex(prev => (prev === 0 ? filteredProducts.length - 1 : prev - 1))} 
+              className="slider-arrow"
+            >
+              &lt;
+            </button>
             
-            {/* SISI KIRI: SLIDER GAMBAR */}
-            <div className="catalog-card">
-              <button onClick={handlePrev} className="slider-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" style={{width: '20px', height: '20px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-              </button>
-
-              <div className="catalog-img-wrapper">
-                <img src={currentProduct.img} alt={currentProduct.name} />
-                {currentProduct.region && (
-                  <span className="region-badge">{currentProduct.region}</span>
-                )}
-              </div>
-
-              <button onClick={handleNext} className="slider-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" style={{width: '20px', height: '20px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </button>
+            <div className="catalog-img-wrapper">
+              <img src={currentProduct.image_url || '/images/default.png'} alt={currentProduct.name} />
             </div>
             
-            {/* SISI KANAN: DETAIL INFO (DIBUNGKUS MASUK KE SINI SEMUA AGAR TIDAK LEPAS) */}
-            <div className="catalog-info">
-              <span className="category-tag">{currentProduct.category}</span>
-              <h3>{currentProduct.name}</h3>
-              
-              <p className="product-desc">
-                {currentProduct.description || 'Nikmati sensasi keaslian cita rasa kopi Nusantara pilihan terbaik yang diproses secara higienis untuk menghasilkan kenikmatan murni.'}
-              </p>
-
-              {/* Selektor Ukuran */}
-              <div className="catalog-size-selector">
-                <select 
-                  value={selectedSizes[currentProduct.id] || '100gr'}
-                  onChange={(e) => handleSizeChange(currentProduct.id, e.target.value)}
-                >
-                  {currentProduct.category === 'Kopi Otok (Sachet)' ? (
-                    <option value="sachet">Kemasan Sachet</option>
-                  ) : (
-                    <>
-                      <option value="100gr">Kemasan 100 gr</option>
-                      <option value="1kg">Kemasan 1 Kg</option>
-                    </>
-                  )}
-                </select>
-              </div>
-
-              {/* Harga & Tombol Kunjungi */}
-              <div className="price-action-section">
-                <span className="price-label">Harga Premium</span>
-                <p className="price-amount">Rp {currentProduct.price?.toLocaleString('id-ID')}</p>
-                <button className="btn-visit">
-                  Kunjungi Situs &gt;&gt;
-                </button>
-              </div>
-            </div>
-
+            <button 
+              onClick={() => setCurrentIndex(prev => (prev === filteredProducts.length - 1 ? 0 : prev + 1))} 
+              className="slider-arrow"
+            >
+              &gt;
+            </button>
           </div>
-        )}
+          
+          <div className="catalog-info">
+            <span className="category-tag">{activeFilter}</span>
+            <h3>{currentProduct.name}</h3>
+            <p className="product-desc">{cleanDescription(currentProduct.description, currentProduct.name)}</p>
+
+            <div className="catalog-size-selector">
+              <label>Pilih Varian:</label>
+              <select 
+                value={vIndex} 
+                disabled={activeFilter === 'Kopi Otok (Sachet)'}
+                onChange={(e) => setSelectedVariants({...selectedVariants, [currentProduct.name]: e.target.value})}
+              >
+                {currentProduct.variants.map((v, idx) => (
+                  <option key={idx} value={idx}>
+                    {v.type === 'Saset' ? 'Saset (50g)' : v.weight}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="price-action-section">
+              <span className="price-label">Harga Premium</span>
+              <p className="price-amount">Rp {parseInt(currentVariant.price).toLocaleString('id-ID')}</p>
+              <button className="btn-visit"> Kunjungi Toko Kami </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -1,12 +1,13 @@
+// backend/config/db.js
 const { Pool } = require('pg');
 require('dotenv').config();
 
 const pool = new Pool({
-  user: 'postgres',           // User default PostgreSQL
-  host: 'localhost',          // Karena database ada di komputer kamu
-  database: 'db_kopitara',    // Nama database yang kita buat tadi
-  password: '123456',  // GANTI dengan password yang kamu buat saat instal PostgreSQL
-  port: 5432,                 // Port default PostgreSQL
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 module.exports = pool;
