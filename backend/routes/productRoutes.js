@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const productController = require('../controllers/productController');
+const { getAllProducts } = require('../controllers/productController');
 
-// Pastikan ini adalah fungsi, bukan objek kosong
-router.get('/', productController.getAllProducts);
+// Route untuk mendengarkan request GET dari frontend ke '/api/products'
+router.get('/', getAllProducts);
 
 module.exports = router;

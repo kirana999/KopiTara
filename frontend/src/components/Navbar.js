@@ -2,11 +2,14 @@ import React from 'react';
 import '../styles/global.css'; 
 
 const Navbar = () => {
+  // Cek apakah halaman yang sedang aktif adalah halaman katalog
+  const isKatalogPage = window.location.pathname === '/katalog';
+
   return (
     <nav className="navbar">
       <div className="container nav-wrapper">
         
-       {/* Bagian Logo Kopi Tara - Ganti teks dengan gambar */}
+       {/* Bagian Logo Kopi Tara */}
         <a href="/" className="logo-brand">
           <img src="/images/logo-kopitara.png" alt="Logo Kopi Tara" className="logo-img" />
         </a>
@@ -18,9 +21,18 @@ const Navbar = () => {
           <li><a href="/katalog">Katalog Produk</a></li>
         </ul>
 
-        {/* Tombol Aksi Kanan */}
+        {/* Tombol Aksi Kanan - Tetap merender div kontainer agar tata letak tidak miring */}
         <div className="nav-actions">
-          <a href="/katalog" className="btn-pesan">Beli Sekarang</a>
+          <a 
+            href="/katalog" 
+            className="btn-pesan"
+            style={{ 
+              visibility: isKatalogPage ? 'hidden' : 'visible',
+              pointerEvents: isKatalogPage ? 'none' : 'auto' 
+            }}
+          >
+            Beli Sekarang
+          </a>
         </div>
 
       </div>

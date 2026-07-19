@@ -24,21 +24,35 @@ const Catalog = () => {
         const data = await response.json();
 
         const grouped = data.reduce((acc, curr) => {
-          const key = curr.name;
-          if (!acc[key]) {
-            acc[key] = { 
-              ...curr, 
-              variants: [],
-              category: curr.name.toLowerCase().includes('robusta') ? 'Robusta Authentic' : 
-                        curr.name.toLowerCase().includes('arabika') ? 'Arabica Premium' : 'Lainnya'
-            };
-          }
-          acc[key].variants.push({ type: curr.packaging_type, weight: curr.weight, price: curr.price });
-          return acc;
-        }, {});
+  const key = curr.name;
+  if (!acc[key]) {
+    let productCategory = 'Lainnya';
+    const lowerName = curr.name.toLowerCase();
+    
+    // PENTING: Cek kata 'otok' paling pertama agar tidak tersalip kata 'robusta'
+    if (lowerName.includes('otok')) {
+      productCategory = 'Kopi Otok (Sachet)';
+    } else if (lowerName.includes('robusta')) {
+      productCategory = 'Robusta Authentic';
+    } else if (lowerName.includes('arabika') || lowerName.includes('arabica')) {
+      productCategory = 'Arabica Premium';
+    }
+
+    acc[key] = { 
+      ...curr, 
+      variants: [],
+      category: productCategory
+    };
+  }
+  acc[key].variants.push({ type: curr.packaging_type, weight: curr.weight, price: curr.price });
+  return acc;
+}, {});
         setProducts(Object.values(grouped));
-      } catch (error) { console.error("Gagal memuat data:", error); } 
-      finally { setLoading(false); }
+      } catch (error) { 
+        console.error("Gagal memuat data:", error); 
+      } finally { 
+        setLoading(false); 
+      }
     };
     fetchProducts();
   }, []);
@@ -73,7 +87,7 @@ const Catalog = () => {
       <Navbar />
       <header className="catalog-header">
         <div className="container mx-auto px-4">
-          <h1>Koleksi Mahakarya Kopi</h1>
+          <h1>Pilih Kopi Pilihanmu Hari Ini!</h1>
         </div>
       </header>
 

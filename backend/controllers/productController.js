@@ -1,18 +1,19 @@
-// backend/controllers/productController.js
 const pool = require('../config/db');
 
-exports.getAllProducts = async (req, res) => {
-    try {
-        // Menggunakan JOIN agar produk dan variannya keluar bersamaan
-        const query = `
-            SELECT p.id, p.name, p.description, p.image_url, 
-                   pv.packaging_type, pv.weight, pv.price
-            FROM products p
-            LEFT JOIN product_variants pv ON p.id = pv.product_id
-        `;
-        const result = await pool.query(query);
-        res.json(result.rows);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+// Fungsi untuk mengambil semua data produk dari PostgreSQL
+const getAllProducts = async (req, res) => {
+  try {
+    // Query SQL untuk mengambil semua kolom dan mengurutkannya berdasarkan id
+    const result = await pool.query('SELECT * FROM products ORDER BY id ASC');
+    
+    // Kirim data hasil query (result.rows) ke frontend dalam format JSON
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error saat mengambil data produk:', error.message);
+    res.status(500).json({ message: 'Terjadi kesalahan pada server backend.' });
+  }
+};
+
+module.exports = {
+  getAllProducts,
 };
