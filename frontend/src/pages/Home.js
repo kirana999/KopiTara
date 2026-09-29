@@ -52,43 +52,122 @@ const daerahKopi = [
       <Navbar />
 
       {/* 1. HERO SECTION */}
-      <section className="hero">
-        <div className="container">
-          <h1>Setiap cangkir,<br/>diracik menuju kesempurnaan.</h1>
-          <p>Temukan kenikmatan kopi premium nusantara dari petani lokal dalam nuansa yang hangat dan autentik.</p>
-          <Link to="/katalog" className="btn-primary">Lihat Katalog Produk</Link>
-        </div>
-      </section>
+{/* HERO SECTION */}
+<section className="hero">
+  <div className="container hero-inner">
 
-      {/* 2. PROSES KAMI SECTION (Desain Kartu Elegan) */}
-      <section className="process-section container">
-        <h2>Kenali Proses Kami</h2>
-        <p className="process-subtitle">Dedikasi kami tertuang dalam setiap langkah perjalanan kopi dari kebun hingga ke tangan Anda.</p>
-        
-        <div className="process-grid">
-          <div className="process-card">
-            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80')"}}></div>
-            <div className="card-content">
-              <h3>Seleksi Petani</h3>
-              <p>Kami bermitra langsung dengan petani lokal untuk memastikan biji kopi pilihan terbaik.</p>
-            </div>
-          </div>
-          <div className="process-card">
-            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&w=400&q=80')"}}></div>
-            <div className="card-content">
-              <h3>Sangrai Sempurna</h3>
-              <p>Teknik *roasting* presisi untuk menonjolkan karakter unik setiap biji kopi.</p>
-            </div>
-          </div>
-          <div className="process-card">
-            <div className="card-img-placeholder" style={{backgroundImage: "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=400&q=80')"}}></div>
-            <div className="card-content">
-              <h3>Giling Segar</h3>
-              <p>Kopi digiling tepat saat pesanan tiba, menjaga kesegaran dan aroma asli.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    {/* BAGIAN TEKS */}
+    <div className="hero-content">
+      <span className="hero-label">
+        KOPI NUSANTARA • DARI PETANI LOKAL
+      </span>
+
+      <h1>
+        Setiap cangkir,
+        <br />
+        diracik menuju kesempurnaan.
+      </h1>
+
+      <p>
+        Temukan kenikmatan kopi premium nusantara dari petani lokal
+        dalam nuansa yang hangat dan autentik.
+      </p>
+
+      <Link to="/katalog" className="btn-primary">
+        Lihat Katalog Produk
+      </Link>
+    </div>
+
+    {/* BAGIAN FOTO ORGANIK */}
+    <div className="hero-visual">
+      <div className="hero-image-shape"></div>
+
+      <img
+        src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
+        alt="Kopi dan proses penyeduhan"
+        className="hero-image"
+      />
+
+      <div className="hero-image-caption">
+        <span>Authentic Taste</span>
+        <small>From Local Farmers</small>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{/* 2. PROSES KAMI SECTION */}
+<section className="process-section container">
+  <div className="process-heading">
+    <h2>Kenali Proses Kami</h2>
+    <p className="process-subtitle">
+      Dedikasi kami tertuang dalam setiap langkah perjalanan kopi
+      dari kebun hingga ke tangan Anda.
+    </p>
+  </div>
+
+  <div className="process-grid">
+
+    {/* Kartu 1 */}
+    <div className="process-card">
+      <div
+        className="card-img-placeholder"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80')"
+        }}
+      ></div>
+
+      <div className="card-content">
+        <h3>Seleksi Petani</h3>
+        <p>
+          Kami bermitra langsung dengan petani lokal untuk
+          memastikan biji kopi pilihan terbaik.
+        </p>
+      </div>
+    </div>
+
+    {/* Kartu 2 */}
+    <div className="process-card">
+      <div
+        className="card-img-placeholder"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1611162458324-aae1eb4129a4?auto=format&fit=crop&w=400&q=80')"
+        }}
+      ></div>
+
+      <div className="card-content">
+        <h3>Sangrai Sempurna</h3>
+        <p>
+          Teknik <em>roasting</em> presisi untuk menonjolkan
+          karakter unik setiap biji kopi.
+        </p>
+      </div>
+    </div>
+
+    {/* Kartu 3 */}
+    <div className="process-card">
+      <div
+        className="card-img-placeholder"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=400&q=80')"
+        }}
+      ></div>
+
+      <div className="card-content">
+        <h3>Giling Segar</h3>
+        <p>
+          Kopi digiling tepat saat pesanan tiba, menjaga
+          kesegaran dan aroma asli.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 {/* Section dengan gaya Overlay sesuai referensi */}
 <section className="hero-overlay-section">
@@ -104,106 +183,170 @@ const daerahKopi = [
 </section>
 
 {/* 4. BEST SELLER PRODUCT SLIDER SECTION (CENTER MODE & BLUR) */}
-<section className="product-slider-section py-12 bg-cream-light">
-  <div className="container mx-auto px-4 text-center">
-    
+{/* 4. BEST SELLER PRODUCT SLIDER SECTION */}
+<section className="product-slider-section">
+  <div className="container mx-auto px-4 text-center product-slider-content">
+
     {/* Judul Seksi */}
-    <div className="section-title mb-8">
-      <span className="text-amber-700 font-semibold tracking-wider uppercase text-sm block mb-2">Produk Terlaris</span>
-      <h2 className="text-3xl font-bold text-stone-800">Koleksi Kemasan Kopi Unggulan</h2>
-      <p className="text-stone-500 mt-2 text-sm max-w-md mx-auto">Varian kopi terbaik yang paling banyak diminati oleh para penikmat kopi nusantara.</p>
+    <div className="section-title">
+      <span className="section-eyebrow">Produk Terlaris</span>
+
+      <h2>Koleksi Kemasan Kopi Unggulan</h2>
+
+      <p>
+        Varian kopi terbaik yang paling banyak diminati oleh para
+        penikmat kopi nusantara.
+      </p>
     </div>
 
-    <Slider {...sliderSettings}>
-      
-      {[
-        { nama: "KOPI TEMANGGUNG", img: "/images/robusta-temanggung.png", tag: "Terlaris #1" },
-        { nama: "KOPI MALABAR", img: "/images/robusta-malabar.png", tag: "Best Seller" },
-        { nama: "KOPI GARUT", img: "/images/arabica-garut.png", tag: "Favorit" },
-        { nama: "KOPI CIWIDEY", img: "/images/arabica-ciwidey.png", tag: "Best Seller" },
-        { nama: "KOPI KINTAMANI", img: "/images/kopi-5.png", tag: "Rekomendasi" }
-      ].map((produk, index) => (
-        <div className="showcase-card relative p-4" key={index}>
-          
-          {/* Badge Best Seller / Unggulan */}
-          {produk.tag && (
-            <span className="absolute top-6 left-6 z-10 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
-              {produk.tag}
-            </span>
-          )}
+    {/* Slider Produk */}
+    <div className="showcase-slider-wrap">
+      <Slider {...sliderSettings}>
+        {[
+          {
+            nama: "KOPI TEMANGGUNG",
+            img: "/images/robusta-temanggung.png",
+            tag: "Terlaris #1",
+          },
+          {
+            nama: "KOPI MALABAR",
+            img: "/images/robusta-malabar.png",
+            tag: "Best Seller",
+          },
+          {
+            nama: "KOPI GARUT",
+            img: "/images/arabica-garut.png",
+            tag: "Favorit",
+          },
+          {
+            nama: "KOPI CIWIDEY",
+            img: "/images/arabica-ciwidey.png",
+            tag: "Best Seller",
+          },
+          {
+            nama: "KOPI KINTAMANI",
+            img: "/images/kopi-5.png",
+            tag: "Rekomendasi",
+          },
+        ].map((produk, index) => (
+          <div className="showcase-card" key={index}>
 
-          <div className="showcase-img-container rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-white p-4">
-            <img 
-              src={produk.img} 
-              alt={produk.nama} 
-              className="showcase-img w-full h-auto object-contain mx-auto max-h-[300px]" 
-            />
-          </div>
-          
-          <div className="showcase-info mt-4">
-            <h4 className="text-lg font-bold text-stone-800 tracking-wide">{produk.nama}</h4>
-            <span className="text-xs text-amber-800 font-medium tracking-tight bg-amber-50 px-2.5 py-1 rounded mt-1 inline-block">
-              Premium Pack
-            </span>
-          </div>
-          
-        </div>
-      ))}
+            {/* Badge Produk */}
+            {produk.tag && (
+              <span className="showcase-badge">
+                {produk.tag}
+              </span>
+            )}
 
-    </Slider>
+            {/* Area Gambar */}
+<div className={`showcase-img-container showcase-bg-${index + 1}`}>
+  <div className="abstract-shape" aria-hidden="true"></div>
+
+  <img
+    src={produk.img}
+    alt={produk.nama}
+    className="showcase-img"
+  />
+</div>
+
+            {/* Informasi Produk */}
+            <div className="showcase-info">
+              <h4>{produk.nama}</h4>
+
+              <span className="showcase-category">
+                Premium Pack
+              </span>
+            </div>
+
+          </div>
+        ))}
+      </Slider>
+    </div>
+
   </div>
 </section>
 
-{/* ================= SECTION 5: MAP NUSANTARA ================= */}
+{/* ================= SECTION 5: PETA KOPI NUSANTARA ================= */}
 <section className="kopi-tara-nusantara-section">
+
+  {/* Dekorasi organik di background */}
+  <div className="kopi-tara-section-curve"></div>
+  {/* Dekorasi section map */}
+<div className="map-decor-text map-decor-text-left" aria-hidden="true">
+  FROM THE EARTH
+</div>
+
+<div className="map-decor-text map-decor-text-right" aria-hidden="true">
+  TO YOUR CUP
+</div>
+
+<span className="map-coffee-bean bean-decor-one" aria-hidden="true"></span>
+<span className="map-coffee-bean bean-decor-two" aria-hidden="true"></span>
+
+<div className="map-decor-line map-decor-line-left" aria-hidden="true"></div>
+<div className="map-decor-line map-decor-line-right" aria-hidden="true"></div>
+  <div className="kopi-tara-organic-shape organic-shape-one"></div>
+  <div className="kopi-tara-organic-shape organic-shape-two"></div>
+
+  {/* Header */}
   <div className="kopi-tara-map-header">
-    <span className="kopi-tara-map-subtitle">Eksplorasi Varian</span>
-    <h2 className="kopi-tara-map-title">Koleksi Kopi Nusantara</h2>
+    <span className="kopi-tara-map-subtitle">
+      Eksplorasi Varian
+    </span>
+
+    <h2 className="kopi-tara-map-title">
+      Koleksi Kopi Nusantara
+    </h2>
+
     <p className="kopi-tara-map-desc">
-      Setiap titik mewakili kekayaan tanah Indonesia. Sorot pin untuk menemukan kopi pilihan dari daerah favorit Anda.
+      Setiap titik menyimpan cerita dari tanah Indonesia.
+      Temukan kekayaan rasa kopi pilihan dari berbagai daerah Nusantara.
     </p>
   </div>
 
+  {/* Peta */}
   <div className="kopi-tara-nusantara-map-container">
     <div className="kopi-tara-nusantara-map-wrapper">
-      {/* Gambar latar peta emas yang kamu upload */}
-      <img 
-        src="/images/peta-tara.png" 
-        alt="Peta Nusantara Kopintara" 
+
+      <img
+        src="/images/peta-tara.png"
+        alt="Peta asal kopi Nusantara"
         className="kopi-tara-indonesia-map-img"
       />
 
-      {/* Mapping Pin di atas Peta */}
+      {/* Pin lokasi kopi */}
       {daerahKopi.map((daerah, index) => (
-        <div 
+        <div
           key={index}
           className="kopi-pin-lokasi"
-          style={{ top: daerah.koordinat.top, left: daerah.koordinat.left }}
+          style={{
+            top: daerah.koordinat.top,
+            left: daerah.koordinat.left,
+          }}
+          tabIndex={0}
+          aria-label={`Lokasi kopi ${daerah.nama}`}
         >
-          {/* Label Singkat Nama Daerah yang Selalu Muncul */}
-          <div className="label-daerah-minimal">{daerah.singkat}</div>
-
-          {/* Efek Pin Berdenyut */}
-          <div className="kopi-pulse-pin">
-            <div className="pin-pulse-ring"></div>
-            <div className="pin-pulse-dot"></div>
+          <div className="label-daerah-minimal">
+            {daerah.nama}
           </div>
 
-          {/* Tooltip Detail Kopi (Muncul saat Hover) */}
-          <div className="kopi-kemasan-tooltip">
-            <h4 className="tooltip-title">{daerah.nama}</h4>
-            <ul className="tooltip-kopi-list">
-              {daerah.varian.map((varian, idx) => (
-                <li key={idx} onClick={() => console.log(`Klik: ${varian}`)}>
-                  {varian}
-                </li>
-              ))}
-            </ul>
+          <div className="kopi-pulse-pin">
+            <span className="pin-pulse-ring"></span>
+            <span className="pin-pulse-dot"></span>
           </div>
         </div>
       ))}
+
+    </div>
+
+    {/* Keterangan */}
+    <div className="kopi-tara-map-caption">
+      <span className="caption-line"></span>
+      <span>Jelajahi titik untuk mengenal asal kopi</span>
+      <span className="caption-line"></span>
     </div>
   </div>
+
 </section>
 <Footer/>
     </div>
