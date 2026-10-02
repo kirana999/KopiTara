@@ -206,7 +206,7 @@ const daerahKopi = [
           {
             nama: "KOPI TEMANGGUNG",
             img: "/images/robusta-temanggung.png",
-            tag: "Terlaris #1",
+            tag: "Best Seller",
           },
           {
             nama: "KOPI MALABAR",
@@ -219,15 +219,11 @@ const daerahKopi = [
             tag: "Favorit",
           },
           {
-            nama: "KOPI CIWIDEY",
+            nama: "KOPI CIWIDEY", 
             img: "/images/arabica-ciwidey.png",
-            tag: "Best Seller",
+            tag: "Favorit",
           },
-          {
-            nama: "KOPI KINTAMANI",
-            img: "/images/kopi-5.png",
-            tag: "Rekomendasi",
-          },
+        
         ].map((produk, index) => (
           <div className="showcase-card" key={index}>
 
