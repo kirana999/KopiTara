@@ -144,7 +144,7 @@ const Catalog = () => {
             <div className="price-action-section">
               <span className="price-label">Harga Premium</span>
               <p className="price-amount">Rp {parseInt(currentVariant.price).toLocaleString('id-ID')}</p>
-              <button className="btn-visit"> Kunjungi Toko Kami </button>
+              <button className="btn-visit"> Kunjungi Situs </button>
             </div>
           </div>
         </div>

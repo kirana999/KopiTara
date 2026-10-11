@@ -4752,13 +4752,7 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
 
   padding: 20px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #c99f6b 0%,
-      #e2c49b 52%,
-      #d7b17c 100%
-    );
+  background-color: transparent !important;
 
   border-radius: 18px;
 
