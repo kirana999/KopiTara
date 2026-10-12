@@ -4744,7 +4744,8 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   flex: 1;
 
   min-width: 0;
-  min-height: 345px;
+  height: 380px;
+  min-height: 380px;
 
   display: flex;
   align-items: center;
@@ -4752,13 +4753,7 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
 
   padding: 20px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #c99f6b 0%,
-      #e2c49b 52%,
-      #d7b17c 100%
-    );
+  background-color: transparent !important;
 
   border-radius: 18px;
 
@@ -4768,18 +4763,18 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
     inset 0 0 0 1px rgba(255, 255, 255, 0.10);
 }
 
-/* Soft studio glow */
+/* Soft studio glow - centered horizontally and vertically */
 
 .catalog-img-wrapper::before {
   content: "";
 
   position: absolute;
 
-  width: 360px;
-  height: 360px;
+  width: 340px;
+  height: 340px;
 
   left: 50%;
-  top: 55%;
+  top: 50%;
 
   transform: translate(-50%, -50%);
 
@@ -4790,19 +4785,38 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   pointer-events: none;
 }
 
+/* Container gambar konsisten untuk seluruh produk */
+.catalog-img-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 290px;
+  height: 340px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+}
+
+/* Gambar produk kopi: object-fit contain, proporsi terjaga, terpusat */
+.catalog-img-container img,
 .catalog-img-wrapper img {
   position: relative;
   z-index: 2;
 
   display: block;
 
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 
-  max-width: 92%;
-  max-height: 325px;
+  max-width: 100%;
+  max-height: 100%;
 
   object-fit: contain;
+  object-position: center;
 
   filter:
     drop-shadow(
@@ -4814,6 +4828,7 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
     filter 0.4s ease;
 }
 
+.catalog-img-container img:hover,
 .catalog-img-wrapper img:hover {
   transform: translateY(-5px) scale(1.025);
 
@@ -5082,7 +5097,18 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-wrapper {
-    min-height: 310px;
+    height: 340px;
+    min-height: 340px;
+  }
+
+  .catalog-img-container {
+    max-width: 260px;
+    height: 300px;
+  }
+
+  .catalog-img-wrapper::before {
+    width: 290px;
+    height: 290px;
   }
 }
 
@@ -5134,8 +5160,7 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
     min-height: 0;
 
     gap: 8px;
-
-    
+    padding-right: 0;
   }
 
   .slider-arrow {
@@ -5148,16 +5173,28 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-wrapper {
-    min-height: 275px;
+    height: 300px;
+    min-height: 300px;
 
     padding: 12px;
 
     border-radius: 16px;
   }
 
+  .catalog-img-container {
+    max-width: 240px;
+    height: 270px;
+  }
+
+  .catalog-img-wrapper::before {
+    width: 250px;
+    height: 250px;
+  }
+
+  .catalog-img-container img,
   .catalog-img-wrapper img {
-    max-width: 90%;
-    max-height: 265px;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .catalog-info {
@@ -5236,11 +5273,24 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-wrapper {
-    min-height: 230px;
+    height: 250px;
+    min-height: 250px;
   }
 
+  .catalog-img-container {
+    max-width: 200px;
+    height: 220px;
+  }
+
+  .catalog-img-wrapper::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .catalog-img-container img,
   .catalog-img-wrapper img {
-    max-height: 220px;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .slider-arrow {

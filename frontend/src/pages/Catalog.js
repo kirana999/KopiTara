@@ -49,24 +49,15 @@ const Catalog = () => {
 
   useEffect(() => { setCurrentIndex(0); }, [activeFilter]);
 
-  useEffect(() => {
-    if (activeFilter === 'Kopi Otok (Sachet)' && filteredProducts.length > 0) {
-      const newSelections = { ...selectedVariants };
-      filteredProducts.forEach(product => {
-        const sachetIndex = product.variants.findIndex(v => v.type === 'Saset');
-        if (sachetIndex !== -1) newSelections[product.name] = sachetIndex.toString();
-      });
-      setSelectedVariants(newSelections);
-    }
-  }, [activeFilter, filteredProducts]);
-
   if (loading) return <div className="catalog-loading">Memuat...</div>;
   if (filteredProducts.length === 0) return <div className="catalog-empty">Tidak ada produk ditemukan.</div>;
 
   const safeIndex = currentIndex >= filteredProducts.length ? 0 : currentIndex;
   const currentProduct = filteredProducts[safeIndex];
-  const vIndex = parseInt(selectedVariants[currentProduct.name] || 0);
-  const currentVariant = currentProduct.variants[vIndex] || currentProduct.variants[0];
+  const sachetIndex = currentProduct?.variants?.findIndex(v => v.type === 'Saset') ?? -1;
+  const defaultVariantIndex = (activeFilter === 'Kopi Otok (Sachet)' && sachetIndex !== -1) ? sachetIndex : 0;
+  const vIndex = parseInt(selectedVariants[currentProduct?.name] ?? defaultVariantIndex);
+  const currentVariant = currentProduct?.variants[vIndex] || currentProduct?.variants[0] || {};
 
   return (
     <div className="catalog-page">
@@ -89,6 +80,8 @@ const Catalog = () => {
         <div className="catalog-grid">
           <div className="catalog-card">
             <button 
+              id="prev-product-btn"
+              aria-label="Produk Sebelumnya"
               onClick={() => setCurrentIndex(prev => (prev === 0 ? filteredProducts.length - 1 : prev - 1))} 
               className="slider-arrow"
             >
@@ -96,10 +89,18 @@ const Catalog = () => {
             </button>
             
             <div className="catalog-img-wrapper">
-              <img src={currentProduct.image_url || '/images/default.png'} alt={currentProduct.name} />
+              <div className="catalog-img-container">
+                <img 
+                  src={currentProduct.image_url || '/images/default.png'} 
+                  alt={currentProduct.name} 
+                  className="catalog-product-img"
+                />
+              </div>
             </div>
             
             <button 
+              id="next-product-btn"
+              aria-label="Produk Berikutnya"
               onClick={() => setCurrentIndex(prev => (prev === filteredProducts.length - 1 ? 0 : prev + 1))} 
               className="slider-arrow"
             >
