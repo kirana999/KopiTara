@@ -4770,8 +4770,8 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
 
   position: absolute;
 
-  width: 340px;
-  height: 340px;
+  width: 330px;
+  height: 330px;
 
   left: 50%;
   top: 50%;
@@ -4790,9 +4790,9 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   position: relative;
   z-index: 2;
 
-  width: 100%;
-  max-width: 290px;
-  height: 340px;
+  width: 220px;
+  max-width: 220px;
+  height: 330px;
 
   display: flex;
   align-items: center;
@@ -5102,8 +5102,9 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-container {
-    max-width: 260px;
-    height: 300px;
+    width: 190px;
+    max-width: 190px;
+    height: 285px;
   }
 
   .catalog-img-wrapper::before {
@@ -5182,8 +5183,9 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-container {
-    max-width: 240px;
-    height: 270px;
+    width: 160px;
+    max-width: 160px;
+    height: 240px;
   }
 
   .catalog-img-wrapper::before {
@@ -5278,8 +5280,9 @@ h1, h2, h3 {   font-family: "Fraunces", serif;
   }
 
   .catalog-img-container {
-    max-width: 200px;
-    height: 220px;
+    width: 140px;
+    max-width: 140px;
+    height: 210px;
   }
 
   .catalog-img-wrapper::before {

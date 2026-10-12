@@ -105,7 +105,7 @@ const Catalog = () => {
             <div className="catalog-img-wrapper">
               <div className="catalog-img-container">
                 <img 
-                  src={currentProduct.image_url || '/images/default.png'} 
+                  src={`${currentProduct.image_url || '/images/default.png'}?v=3`} 
                   alt={currentProduct.name} 
                   className="catalog-product-img"
                 />
