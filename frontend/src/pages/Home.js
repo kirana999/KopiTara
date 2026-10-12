@@ -239,7 +239,7 @@ const daerahKopi = [
   <div className="abstract-shape" aria-hidden="true"></div>
 
   <img
-    src={produk.img}
+    src={`${produk.img}?v=3`}
     alt={produk.nama}
     className="showcase-img"
   />
